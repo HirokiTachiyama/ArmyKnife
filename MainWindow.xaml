@@ -1,0 +1,188 @@
+﻿<Window x:Class="ArmyKnife.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ArmyKnife"
+        mc:Ignorable="d"
+        Title="ArmyKnife" Height="450" Width="800"
+        >
+    <Grid>
+        <!-- 大外 -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <!-- メニュー -->
+        <Menu Grid.Row="0">
+            <MenuItem Header="Menu"/>
+            <MenuItem Header="Help"/>
+        </Menu>
+
+        <!-- 本体 -->
+        <TabControl Grid.Row="1">
+
+            <!-- DokuWikiタブ: Grid 1x2, 左側がテキストエリア, 右が各種ラベル・ボタン -->
+            <TabItem Name="DW_TabItem" Header="DokuWiki">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- 左、テキストエリア -->
+                    <TextBox Name="DW_PageContentTextBox" Grid.Row="0" Grid.Column="0"
+                        Text="TextBox" TextWrapping="Wrap"/>
+
+                    <!-- 右、各種ラベル、ボタン -->
+                    <Canvas Grid.Row="0" Grid.Column="1">
+
+                        <Label Name = "DW_UrlLabel" Content="DW_UrlLabel" Canvas.Left="10" Canvas.Top="10"/>
+                        <Label Name = "DW_UserPassLabel" Content="DW_UserPassLabel" Canvas.Left="10" Canvas.Top="41"/>
+                        <Button Name ="DW_LoadButton" Content="Load" Canvas.Left="10" Canvas.Top="72" Width="45" Click="DW_LoadButton_Clicked"/>
+                        <Button Name ="DW_SaveButton" Content="Save" Canvas.Left="80" Canvas.Top="72" Width="45" Click="DW_SaveButton_Clicked"/>
+                        
+                        <TreeView Name="DW_TreeView" Width="377" 
+                                  Canvas.Top="105" Canvas.Left="10" Canvas.Right="10" Canvas.Bottom="10" Height="240"
+                                  ItemsSource="{Binding DW_TreeViewRoot}"
+                                  
+                                  />
+
+                    </Canvas>
+
+                </Grid>
+
+            </TabItem>
+
+            <!-- 将棋タブ -->
+            <TabItem Header="Syogi">
+
+                <Canvas>
+
+                    <Label Content="hoge" />
+
+                    <Grid Name="SY_GobanGrid" Height="255" Width="594" Canvas.Left="27" Canvas.Top="31" ShowGridLines="True">
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <!-- 碁盤 -->
+                        <Label Grid.Row="0" Grid.Column="0" Content="9"/>
+                        <Label Grid.Row="0" Grid.Column="1" Content="8"/>
+                        <Label Grid.Row="0" Grid.Column="2" Content="7"/>
+                        <Label Grid.Row="0" Grid.Column="3" Content="6"/>
+                        <Label Grid.Row="0" Grid.Column="4" Content="5"/>
+                        <Label Grid.Row="0" Grid.Column="5" Content="4"/>
+                        <Label Grid.Row="0" Grid.Column="6" Content="3"/>
+                        <Label Grid.Row="0" Grid.Column="7" Content="2"/>
+                        <Label Grid.Row="0" Grid.Column="8" Content="1"/>
+
+                        <Label Grid.Row="1" Grid.Column="10" Content="一"/>
+                        <Label Grid.Row="2" Grid.Column="10" Content="二"/>
+                        <Label Grid.Row="3" Grid.Column="10" Content="三"/>
+                        <Label Grid.Row="4" Grid.Column="10" Content="四"/>
+                        <Label Grid.Row="5" Grid.Column="10" Content="五"/>
+                        <Label Grid.Row="6" Grid.Column="10" Content="六"/>
+                        <Label Grid.Row="7" Grid.Column="10" Content="七"/>
+                        <Label Grid.Row="8" Grid.Column="10" Content="八"/>
+                        <Label Grid.Row="9" Grid.Column="10" Content="九"/>
+
+                        <!-- 後手側 -->
+                        <Label Name="SY_GobanGrid11" Grid.Row="1" Grid.Column="8" Content="香"/>
+                        <Label Name="SY_GobanGrid12" Grid.Row="1" Grid.Column="7" Content="桂"/>
+                        <Label Name="SY_GobanGrid13" Grid.Row="1" Grid.Column="6" Content="銀"/>
+                        <Label Name="SY_GobanGrid14" Grid.Row="1" Grid.Column="5" Content="金"/>
+                        <Label Name="SY_GobanGrid15" Grid.Row="1" Grid.Column="4" Content="玉"/>
+                        <Label Name="SY_GobanGrid16" Grid.Row="1" Grid.Column="3" Content="金"/>
+                        <Label Name="SY_GobanGrid17" Grid.Row="1" Grid.Column="2" Content="銀"/>
+                        <Label Name="SY_GobanGrid18" Grid.Row="1" Grid.Column="1" Content="桂"/>
+                        <Label Name="SY_GobanGrid19" Grid.Row="1" Grid.Column="0" Content="香"/>
+
+                        <Label Name="SY_GobanGrid22" Grid.Row="2" Grid.Column="7" Content="角"/>
+                        <Label Name="SY_GobanGrid28" Grid.Row="2" Grid.Column="1" Content="飛"/>
+
+                        <Label Name="SY_GobanGrid31" Grid.Row="3" Grid.Column="8" Content="歩"/>
+                        <Label Name="SY_GobanGrid32" Grid.Row="3" Grid.Column="7" Content="歩"/>
+                        <Label Name="SY_GobanGrid33" Grid.Row="3" Grid.Column="6" Content="歩"/>
+                        <Label Name="SY_GobanGrid34" Grid.Row="3" Grid.Column="5" Content="歩"/>
+                        <Label Name="SY_GobanGrid35" Grid.Row="3" Grid.Column="4" Content="歩"/>
+                        <Label Name="SY_GobanGrid36" Grid.Row="3" Grid.Column="3" Content="歩"/>
+                        <Label Name="SY_GobanGrid37" Grid.Row="3" Grid.Column="2" Content="歩"/>
+                        <Label Name="SY_GobanGrid38" Grid.Row="3" Grid.Column="1" Content="歩"/>
+                        <Label Name="SY_GobanGrid39" Grid.Row="3" Grid.Column="0" Content="歩"/>
+
+                        <!-- 先手側 -->
+                        <Label Name="SY_GobanGrid91" Grid.Row="9" Grid.Column="8" Content="香"/>
+                        <Label Name="SY_GobanGrid92" Grid.Row="9" Grid.Column="7" Content="桂"/>
+                        <Label Name="SY_GobanGrid93" Grid.Row="9" Grid.Column="6" Content="銀"/>
+                        <Label Name="SY_GobanGrid94" Grid.Row="9" Grid.Column="5" Content="金"/>
+                        <Label Name="SY_GobanGrid95" Grid.Row="9" Grid.Column="4" Content="玉"/>
+                        <Label Name="SY_GobanGrid96" Grid.Row="9" Grid.Column="3" Content="金"/>
+                        <Label Name="SY_GobanGrid97" Grid.Row="9" Grid.Column="2" Content="銀"/>
+                        <Label Name="SY_GobanGrid98" Grid.Row="9" Grid.Column="1" Content="桂"/>
+                        <Label Name="SY_GobanGrid99" Grid.Row="9" Grid.Column="0" Content="香"/>
+
+                        <Label Name="SY_GobanGrid82" Grid.Row="8" Grid.Column="7" Content="飛"/>
+                        <Label Name="SY_GobanGrid88" Grid.Row="8" Grid.Column="1" Content="角"/>
+
+                        <Label Name="SY_GobanGrid71" Grid.Row="7" Grid.Column="8" Content="歩"/>
+                        <Label Name="SY_GobanGrid72" Grid.Row="7" Grid.Column="7" Content="歩"/>
+                        <Label Name="SY_GobanGrid73" Grid.Row="7" Grid.Column="6" Content="歩"/>
+                        <Label Name="SY_GobanGrid74" Grid.Row="7" Grid.Column="5" Content="歩"/>
+                        <Label Name="SY_GobanGrid75" Grid.Row="7" Grid.Column="4" Content="歩"/>
+                        <Label Name="SY_GobanGrid76" Grid.Row="7" Grid.Column="3" Content="歩"/>
+                        <Label Name="SY_GobanGrid77" Grid.Row="7" Grid.Column="2" Content="歩"/>
+                        <Label Name="SY_GobanGrid78" Grid.Row="7" Grid.Column="1" Content="歩"/>
+                        <Label Name="SY_GobanGrid79" Grid.Row="7" Grid.Column="0" Content="歩"/>
+
+                    </Grid>
+
+                </Canvas>
+
+            </TabItem>
+            <TabItem Name="LV_TabItem" Header="LogViewer" HorizontalAlignment="Center" Height="20" VerticalAlignment="Center">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+            <TabItem Name="RM_TabItem" Header="RedMine" HorizontalAlignment="Center" Height="20" VerticalAlignment="Center">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+        </TabControl>
+
+        <StatusBar Grid.Row="2" Grid.Column="0">
+            <Label Content="StatusLabel" FontSize="11.5"/>
+        </StatusBar>
+
+
+    </Grid>
+</Window>
