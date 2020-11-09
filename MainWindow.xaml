@@ -25,7 +25,7 @@
         </Menu>
 
         <!-- 本体 -->
-        <TabControl Grid.Row="1">
+        <TabControl Name="AK_TabControl" Grid.Row="1" SelectionChanged="TabControl_SelectionChanged">
 
             <!-- DokuWikiタブ: Grid 1x2, 左側がテキストエリア, 右が各種ラベル・ボタン -->
             <TabItem Name="DW_TabItem" Header="DokuWiki">
@@ -47,7 +47,7 @@
 
                         <Label Name = "DW_UrlLabel" Content="DW_UrlLabel" Canvas.Left="10" Canvas.Top="10"/>
                         <Label Name = "DW_UserPassLabel" Content="DW_UserPassLabel" Canvas.Left="10" Canvas.Top="41"/>
-                        <Button Name ="DW_LoadButton" Content="Load" Canvas.Left="10" Canvas.Top="72" Width="45" Click="DW_LoadButton_Clicked"/>
+                        <Button Name ="DW_LoadButton" Content="Load" Canvas.Left="9" Canvas.Top="72" Width="45" Click="DW_LoadButton_Clicked"/>
                         <Button Name ="DW_SaveButton" Content="Save" Canvas.Left="80" Canvas.Top="72" Width="45" Click="DW_SaveButton_Clicked"/>
                         
                         <TreeView Name="DW_TreeView" Width="377" 
@@ -180,7 +180,7 @@
         </TabControl>
 
         <StatusBar Grid.Row="2" Grid.Column="0">
-            <Label Content="StatusLabel" FontSize="11.5"/>
+            <Label Name="AK_StatusLabel" Content="StatusLabel" FontSize="11.5"/>
         </StatusBar>
 
 

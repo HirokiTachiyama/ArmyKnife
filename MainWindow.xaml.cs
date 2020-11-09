@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualBasic.CompilerServices;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -138,12 +139,98 @@ namespace ArmyKnife
 
         private void DW_LoadButton_Clicked(object sender, RoutedEventArgs e)
         {
-
+            DW_PageContentTextBox.Text = DW_dpm.GetPageStr(conf.todoPage);
         }
 
         private void DW_SaveButton_Clicked(object sender, RoutedEventArgs e)
         {
+            bool ret = DW_dpm.PutPage(DW_PageContentTextBox.Text, conf.todoPage);
+
+            if (ret)
+            {
+                DW_status = "put success.";
+            }
+            else
+            {
+                DW_status = "put failed.";
+            }
+            UpdateStatusLabel();
+        }
+
+        private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            switch (this.AK_TabControl.SelectedIndex)
+            {
+                case 0: // DokuWiki
+                    DW_TabItem_Selected();
+                    break;
+                case 1: // Syogi
+                    SY_TabItem_Selected();
+                    break;
+                case 2: // LogViewer
+                    LV_TabItem_Selected();
+                    break;
+                case 3: // RedMine
+                    RM_TabItem_Selected();
+                    break;
+                default:
+                    break;
+            }
 
         }
+
+        private void LV_TabItem_Selected()
+        {
+            Console.WriteLine("LogViewer");
+            UpdateStatusLabel();
+        }
+
+        private void SY_TabItem_Selected()
+        {
+            Console.WriteLine("Syogi");
+            UpdateStatusLabel();
+        }
+
+        private void DW_TabItem_Selected()
+        {
+            Console.WriteLine("DokuWiki");
+            UpdateStatusLabel();
+        }
+
+        private void RM_TabItem_Selected()
+        {
+            Console.WriteLine("Redmine");
+
+
+
+            UpdateStatusLabel();
+        }
+
+
+        // ステータステキストのアップデート
+        private void UpdateStatusLabel()
+        {
+            // 現在のタブに応じて分岐
+            switch (AK_TabControl.SelectedIndex)
+            {
+                case 0: // DokuWiki
+                    AK_StatusLabel.Content = DW_status;
+                    break;
+                case 1: // Syogi
+                    AK_StatusLabel.Content = SY_status;
+                    break;
+                case 2: // LogViewer
+                    AK_StatusLabel.Content = LV_status;
+                    break;
+                case 3: // Redmine
+                    AK_StatusLabel.Content = RM_status;
+                    break;
+                default:
+                    break;
+            }
+
+        }
+
+
     }
 }
