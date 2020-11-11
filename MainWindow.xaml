@@ -249,7 +249,7 @@
                     </Grid>
                     <TextBox Name="testTB" Canvas.Left="326" Canvas.Top="10" Text="TextBox" TextWrapping="Wrap" Width="458" Height="298" TextChanged="testTB_TextChanged"/>
                     <TextBox Name="shogitb" Canvas.Left="179" Canvas.Top="317" Text="TextBox" TextWrapping="Wrap" Width="467"/>
-                    <Button Name="shogibutton" Content="Button" Canvas.Left="685" Canvas.Top="317" Canvas.Right="10" Click="shogibutton_Click"/>
+                    <Button Name="shogibutton" Content="Button" Canvas.Left="685" Canvas.Top="317" Canvas.Right="10" Click="shogibutton_ClickAsync"/>
 
                 </Canvas>
 
