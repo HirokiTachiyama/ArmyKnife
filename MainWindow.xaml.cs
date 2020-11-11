@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -231,6 +232,32 @@ namespace ArmyKnife
 
         }
 
+        private void testTB_TextChanged(object sender, TextChangedEventArgs e)
+        {
 
+        }
+
+        private void shogibutton_Click(object sender, RoutedEventArgs e)
+        {
+            WebClient wc = new WebClient();
+            try
+            {
+                string text = wc.DownloadString(shogitb.Text);
+                testTB.Text = text.Substring(text.IndexOf("var data")/*, text.IndexOf("</script>")*/).ToString();
+                
+//                testTB.Text = text[text.IndexOf("var data")..].ToString();
+
+
+
+            }
+            catch (WebException we)
+            {
+                testTB.Text = we.ToString();
+            }
+
+
+
+
+        }
     }
 }
