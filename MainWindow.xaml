@@ -40,7 +40,7 @@
 
                     <!-- 左、テキストエリア -->
                     <TextBox Name="DW_PageContentTextBox" Grid.Row="0" Grid.Column="0"
-                        Text="TextBox" TextWrapping="Wrap"/>
+                        Text="TextBox"/>
 
                     <!-- 右、各種ラベル、ボタン -->
                     <Canvas Grid.Row="0" Grid.Column="1">
