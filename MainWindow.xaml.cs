@@ -140,6 +140,8 @@ namespace ArmyKnife
         private void DW_LoadButton_Clicked(object sender, RoutedEventArgs e)
         {
             DW_PageContentTextBox.Text = DW_dpm.GetPageStr(conf.todoPage);
+            DW_status = "Loaded.";
+            UpdateStatusLabel();
         }
 
         private void DW_SaveButton_Clicked(object sender, RoutedEventArgs e)
