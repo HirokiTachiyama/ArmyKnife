@@ -1,8 +1,14 @@
-﻿using Microsoft.VisualBasic.CompilerServices;
+﻿using AngleSharp.Html.Dom;
+using AngleSharp.Html.Parser;
+using Microsoft.VisualBasic.CompilerServices;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -230,6 +236,111 @@ namespace ArmyKnife
                 default:
                     break;
             }
+
+        }
+
+        private void testTB_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private async void shogibutton_ClickAsync(object sender, RoutedEventArgs e)
+        {
+
+            string text;
+            WebClient wc = new WebClient();
+            try
+            {
+                text = wc.DownloadString(shogitb.Text);
+                testTB.Text = text.Substring(text.IndexOf("var data")/*, text.IndexOf("</script>")*/).ToString();
+                
+//                testTB.Text = text[text.IndexOf("var data")..].ToString();
+
+
+
+            }
+            catch (WebException we)
+            {
+                testTB.Text = we.ToString();
+            }
+            _ = Task.Run(async () =>
+                {
+                    try
+                    {
+
+
+                        // 株価を取得したいサイトのURL
+                        var code = "eff8410f11971491eef56d0d2f506c2114ee5fd1";
+                        var urlstring = $"https://shogidb2.com/games/{code}";
+
+                        // 指定したサイトのHTMLをストリームで取得する
+                        var doc = default(IHtmlDocument);
+                        using (var client = new HttpClient())
+                        using (var stream = await client.GetStreamAsync(new Uri(urlstring)))
+                        {
+                            // AngleSharp.Html.Parser.HtmlParserオブジェクトにHTMLをパースさせる
+                            var parser = new HtmlParser();
+                            //doc = await parser.ParseDocumentAsync(stream);
+
+
+                            var document = await parser.ParseDocumentAsync(wc.DownloadString(shogitb.Text));
+                            Debug.WriteLine(document.ToString());
+                            Console.WriteLine(document.ToString());
+
+                        }
+
+
+
+                        // クエリーセレクタを指定し株価部分を取得する
+                        var priceElement = doc.QuerySelector("#main td[class=stoksPrice]");
+                        var hoge = doc.QuerySelector("<script>");
+
+                        Debug.WriteLine(hoge.TextContent.ToString());
+
+                        // 取得した株価がstring型なのでint型にパースする
+                        //int.TryParse(priceElement.TextContent, NumberStyles.AllowThousands, null, out var price);
+                        //Debug.WriteLine("コクヨ(7984.T)の株価: {0}円", price);
+
+                    }catch (Exception e)
+                    {
+                        Debug.WriteLine(e);
+                    }
+
+                });
+
+//            testMethodAsync();
+            
+        }
+
+        private async Task testMethodAsync()
+        {
+            // 株価を取得したいサイトのURL
+            var code = "eff8410f11971491eef56d0d2f506c2114ee5fd1";
+            var urlstring = $"https://shogidb2.com/games/{code}";
+
+            // 指定したサイトのHTMLをストリームで取得する
+            var doc = default(IHtmlDocument);
+            using (var client = new HttpClient())
+            using (var stream = await client.GetStreamAsync(new Uri(urlstring)))
+            {
+                // AngleSharp.Html.Parser.HtmlParserオブジェクトにHTMLをパースさせる
+                var parser = new HtmlParser();
+                doc = await parser.ParseDocumentAsync(stream);
+            }
+
+            // クエリーセレクタを指定し株価部分を取得する
+            var priceElement = doc.QuerySelector("#main td[class=stoksPrice]");
+
+            var hoge = doc.QuerySelector("<script>");
+
+            Debug.WriteLine(hoge.TextContent.ToString());
+
+            // 取得した株価がstring型なのでint型にパースする
+            int.TryParse(priceElement.TextContent, NumberStyles.AllowThousands, null, out var price);
+
+            Debug.WriteLine("コクヨ(7984.T)の株価: {0}円", price);
+
+                
 
         }
 
