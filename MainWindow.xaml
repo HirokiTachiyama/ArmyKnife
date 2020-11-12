@@ -63,13 +63,16 @@
             </TabItem>
 
             <!-- 将棋タブ -->
-            <TabItem Header="Syogi">
+            <TabItem Name="SY_TabItem" Header="Syogi" KeyDown="SY_TabItem_KeyDown">
 
                 <Canvas>
 
-                    <Label Content="hoge" Canvas.Left="44" Canvas.Top="282"/>
+                    <Label Name="SY_SenteLabel"   Content="先手" Canvas.Left="10" Canvas.Top="306" Width="300"/>
+                    <Label Name="SY_GoteLabel"    Content="後手" Canvas.Left="10" Canvas.Top="16" Width="300"/>
+                    <Label Name="SY_CommandLabel" Content="Command" Canvas.Left="335" Canvas.Top="16" Width="314"/>
 
-                    <Grid Name="SY_GobanGrid" Height="255" Width="300" Canvas.Left="10" Canvas.Top="10" ShowGridLines="True">
+
+                    <Grid Name="SY_GobanGrid" Height="254" Width="300" Canvas.Left="35" Canvas.Top="47" ShowGridLines="True">
 
                         <Grid.RowDefinitions>
                             <RowDefinition/>
@@ -233,7 +236,7 @@
                         <Label Name="SY_GobanGrid98" Grid.Row="9" Grid.Column="1" Content="桂" HorizontalAlignment="Center"/>
                         <Label Name="SY_GobanGrid99" Grid.Row="9" Grid.Column="0" Content="香" HorizontalAlignment="Center"/>
 
-                        <Label Name="SY_GobanGrid82" Grid.Row="8" Grid.Column="6" Content="飛" HorizontalAlignment="Center"/>
+                        <Label Name="SY_GobanGrid82" Grid.Row="8" Grid.Column="7" Content="飛" HorizontalAlignment="Center"/>
                         <Label Name="SY_GobanGrid88" Grid.Row="8" Grid.Column="1" Content="角" HorizontalAlignment="Center"/>
 
                         <Label Name="SY_GobanGrid71" Grid.Row="7" Grid.Column="8" Content="歩" HorizontalAlignment="Center"/>
@@ -247,8 +250,8 @@
                         <Label Name="SY_GobanGrid79" Grid.Row="7" Grid.Column="0" Content="歩" HorizontalAlignment="Center"/>
 
                     </Grid>
-                    <TextBox Name="testTB" Canvas.Left="326" Canvas.Top="10" Text="TextBox" TextWrapping="Wrap" Width="458" Height="298" TextChanged="testTB_TextChanged"/>
-                    <TextBox Name="shogitb" Canvas.Left="179" Canvas.Top="317" Text="TextBox" TextWrapping="Wrap" Width="467"/>
+                    <TextBox Name="testTB" Canvas.Left="412" Canvas.Top="47" Text="TextBox" TextWrapping="Wrap" Width="372" Height="261" TextChanged="testTB_TextChanged"/>
+                    <TextBox Name="shogitb" Canvas.Left="182" Canvas.Top="337" Text="TextBox" TextWrapping="Wrap" Width="467"/>
                     <Button Name="shogibutton" Content="Button" Canvas.Left="685" Canvas.Top="317" Canvas.Right="10" Click="shogibutton_ClickAsync"/>
 
                 </Canvas>

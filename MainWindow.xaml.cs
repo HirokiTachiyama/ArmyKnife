@@ -344,6 +344,38 @@ namespace ArmyKnife
 
         }
 
+        private void SY_TabItem_KeyDown(object sender, KeyEventArgs e)
+        {
+            // 歩FU 香KY 桂KE 銀GI 金KI 角KA 飛HI 王OU と金TO 成香NY 成桂NK 成銀NG 馬UM 龍RY
+            string tmp = string.Empty;
+            switch (e.Key)
+            {
+                case Key.S: // 先手番
+                    tmp = "▲"; break;
+                case Key.D: // 後手番
+                    tmp = "△"; break;
+                case Key.D0 or Key.D1 or Key.D2 or Key.D3 or Key.D4: // "D0", "D1", ...
+                case Key.D5 or Key.D6 or Key.D7 or Key.D8 or Key.D9:
+                    tmp = e.Key.ToString().Substring(1); break;
+                case Key.F or Key.U or Key.K or Key.E or Key.G or Key.I:
+                case Key.O or Key.M or Key.R or Key.Y or Key.T or Key.H:
+                    tmp = e.Key.ToString();
+                    break;
+                case Key.Enter:
+                    do_sashite();
+                    break;
+                default:
+                    SY_CommandLabel.Content = "";
+                    break;
+            }
+            SY_CommandLabel.Content = SY_CommandLabel.Content.ToString() + tmp;
+
+        }
+
+        void do_sashite()
+        {
+
+        }
 
     }
 }
