@@ -39,8 +39,7 @@
                     </Grid.ColumnDefinitions>
 
                     <!-- 左、テキストエリア -->
-                    <TextBox Name="DW_PageContentTextBox" Grid.Row="0" Grid.Column="0"
-                        Text="TextBox"/>
+                    <TextBox Name="DW_PageContentTextBox" Grid.Row="0" Grid.Column="0" AcceptsReturn="True" Text="TextBox"/>
 
                     <!-- 右、各種ラベル、ボタン -->
                     <Canvas Grid.Row="0" Grid.Column="1">
@@ -50,8 +49,8 @@
                         <Button Name ="DW_LoadButton" Content="Load" Canvas.Left="9" Canvas.Top="72" Width="45" Click="DW_LoadButton_Clicked"/>
                         <Button Name ="DW_SaveButton" Content="Save" Canvas.Left="80" Canvas.Top="72" Width="45" Click="DW_SaveButton_Clicked"/>
 
-                        <TreeView Name="DW_TreeView" Width="377" 
-                                  Canvas.Top="105" Canvas.Left="10" Canvas.Right="10" Canvas.Bottom="10" Height="240"
+                        <TreeView Name="DW_TreeView" Width="379" 
+                                  Canvas.Top="120" Canvas.Left="8" Canvas.Right="10" Canvas.Bottom="10" Height="230"
                                   ItemsSource="{Binding DW_TreeViewRoot}" Margin="5,5,5,5"
                                   
                                   />
