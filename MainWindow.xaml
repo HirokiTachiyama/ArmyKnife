@@ -100,9 +100,9 @@
                         </Grid.ColumnDefinitions>
 
                         <!-- 碁盤 -->
-                        <Label Grid.Row="0" Grid.Column="0" Content="9" HorizontalAlignment="Center" />
+                        <Label Grid.Row="0" Grid.Column="0" Content="9" HorizontalAlignment="Center"/>
                         <Label Grid.Row="0" Grid.Column="1" Content="8" HorizontalAlignment="Center"/>
-                        <Label Grid.Row="0" Grid.Column="2" Content="7" HorizontalAlignment="Center" />
+                        <Label Grid.Row="0" Grid.Column="2" Content="7" HorizontalAlignment="Center"/>
                         <Label Grid.Row="0" Grid.Column="3" Content="6" HorizontalAlignment="Center"/>
                         <Label Grid.Row="0" Grid.Column="4" Content="5" HorizontalAlignment="Center"/>
                         <Label Grid.Row="0" Grid.Column="5" Content="4" HorizontalAlignment="Center"/>

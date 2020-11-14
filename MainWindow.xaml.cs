@@ -1,4 +1,5 @@
-﻿using AngleSharp.Html.Dom;
+﻿using AngleSharp.Dom;
+using AngleSharp.Html.Dom;
 using AngleSharp.Html.Parser;
 using Microsoft.VisualBasic.CompilerServices;
 using System;
@@ -370,7 +371,6 @@ namespace ArmyKnife
             SY_CommandLabel.Content = SY_CommandLabel.Content.ToString() + tmp;
 
             convert_sashite();
-
         }
 
         void convert_sashite()
@@ -383,71 +383,49 @@ namespace ArmyKnife
             {
                 switch (tmp.Substring(length - 1))
                 {
-                    case "1":
-                        kanji = "一"; break;
-                    case "2":
-                        kanji = "二"; break;
-                    case "3":
-                        kanji = "三"; break;
-                    case "4":
-                        kanji = "四"; break;
-                    case "5":
-                        kanji = "五"; break;
-                    case "6":
-                        kanji = "六"; break;
-                    case "7":
-                        kanji = "七"; break;
-                    case "8":
-                        kanji = "八"; break;
-                    case "9":
-                        kanji = "九"; break;
-                    default:
-                        break;
+                    case "1": kanji = "一"; break;
+                    case "2": kanji = "二"; break;
+                    case "3": kanji = "三"; break;
+                    case "4": kanji = "四"; break;
+                    case "5": kanji = "五"; break;
+                    case "6": kanji = "六"; break;
+                    case "7": kanji = "七"; break;
+                    case "8": kanji = "八"; break;
+                    case "9": kanji = "九"; break;
+                    default: break;
                 }
                 tmp = tmp.Substring(0, length - 1) + kanji;
                 SY_CommandLabel.Content = tmp;
             } else if(Regex.IsMatch(tmp, @"[A-Y]{2,2}")){ // 2文字のアルファベットが登場したら漢字に変える
                 switch (tmp.Substring(length - 2)) {
                     // 歩FU 香KY 桂KE 銀GI 金KI 角KA 飛HI 王OU と金TO 成香NY 成桂NK 成銀NG 馬UM 龍RY
-                    case "FU":
-                        kanji = "歩"; break;
-                    case "KY":
-                        kanji = "香"; break;
-                    case "KE":
-                        kanji = "桂"; break;
-                    case "GI":
-                        kanji = "銀"; break;
-                    case "KI":
-                        kanji = "金"; break;
-                    case "KA":
-                        kanji = "角"; break;
-                    case "HI":
-                        kanji = "飛"; break;
-                    case "OU":
-                        kanji = "王"; break;
-                    case "TO":
-                        kanji = "と"; break;
-                    case "NY":
-                        kanji = "成香"; break;
-                    case "NG":
-                        kanji = "成銀"; break;
-                    case "UM":
-                        kanji = "馬"; break;
-                    case "RY":
-                        kanji = "龍"; break;
-                    default:
-                        break;
+                    case "FU": kanji = "歩"; break;
+                    case "KY": kanji = "香"; break;
+                    case "KE": kanji = "桂"; break;
+                    case "GI": kanji = "銀"; break;
+                    case "KI": kanji = "金"; break;
+                    case "KA": kanji = "角"; break;
+                    case "HI": kanji = "飛"; break;
+                    case "OU": kanji = "王"; break;
+                    case "TO": kanji = "と"; break;
+                    case "NY": kanji = "成香"; break;
+                    case "NG": kanji = "成銀"; break;
+                    case "UM": kanji = "馬"; break;
+                    case "RY": kanji = "龍"; break;
+                    default: break;
                 }
                 tmp = tmp.Substring(0, length - 2) + kanji;
                 SY_CommandLabel.Content = tmp;
             }
-
-
-
         }
 
         void do_sashite()
         {
+            string tmp = SY_CommandLabel.Content.ToString();
+
+            SolidColorBrush mySolidColorBrush = new SolidColorBrush(Colors.SteelBlue);
+            // アルファ値で、透過するようにしている。255は完全な不透明 0 は完全な透明
+            SY_GobanGrid77.Background = mySolidColorBrush;
 
             // SY_CommandLabel.Content = string.Empty;
         }
