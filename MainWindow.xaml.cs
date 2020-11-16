@@ -16,6 +16,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -305,7 +306,6 @@ namespace ArmyKnife
                     {
                         Debug.WriteLine(e);
                     }
-
                 });
 
 //            testMethodAsync();
@@ -362,7 +362,8 @@ namespace ArmyKnife
                     tmp = e.Key.ToString();
                     break;
                 case Key.Enter:
-                    do_sashite();
+                    //do_sashite();
+                    make_goban(SY_CommandLabel.Content.ToString()[0]);
                     break;
                 default:
                     SY_CommandLabel.Content = "";
@@ -372,6 +373,68 @@ namespace ArmyKnife
 
             convert_sashite();
         }
+
+        void make_goban(char _teban)
+        {
+            LV_Grid.Children.Clear();
+            RowDefinition[] dan = new RowDefinition[9]; // 行, 段, 横
+            ColumnDefinition[] suji = new ColumnDefinition[9]; // 列, 筋, 縦
+
+            // 段, 筋の初期化
+            for(int i=0; i<9; i++)
+            {
+                dan[i] = new RowDefinition();
+                LV_Grid.RowDefinitions.Add(dan[i]);
+                dan[i].Height = new GridLength(25);
+
+                suji[i] = new ColumnDefinition();
+                LV_Grid.ColumnDefinitions.Add(suji[i]);
+                suji[i].Width = new GridLength(30);
+            }
+
+            Label[,] gobanLabel = new Label[10, 10];
+
+
+            if (_teban == '▲')
+            {
+                // 先手番の盤の向き
+                for (int i = 8; i >= 0; i--)
+                {
+                    for (int j = 8; j >= 0; j--)
+                    {
+                        gobanLabel[i + 1, j + 1] = new Label();
+                        gobanLabel[i + 1, j + 1].Content = $"{i + 1}, {j + 1}";
+                        Grid.SetRow(gobanLabel[i + 1, j + 1], i);
+                        Grid.SetColumn(gobanLabel[i + 1, j + 1], 8 - j);
+                        LV_Grid.Children.Add(gobanLabel[i + 1, j + 1]);
+                    }
+                }
+            }
+            else if (_teban == '△')
+            {
+
+                // 後手番の盤の向き
+                for (int i = 0; i <= 8; i++)
+                {
+                    for (int j = 0; j <= 8; j++)
+                    {
+                        gobanLabel[i + 1, j + 1] = new Label();
+                        gobanLabel[i + 1, j + 1].Content = $"{i + 1}, {j + 1}";
+                        Grid.SetRow(gobanLabel[i + 1, j + 1], i);
+                        Grid.SetColumn(gobanLabel[i + 1, j + 1], 8 - j);
+                        LV_Grid.Children.Add(gobanLabel[i + 1, j + 1]);
+                    }
+                }
+
+            }
+
+
+            gobanLabel[5, 5].Content = "歩";
+            gobanLabel[1, 1].Content = "香";
+
+
+        }
+
 
         void convert_sashite()
         {
@@ -442,9 +505,10 @@ namespace ArmyKnife
                 var property = typeof(Label).GetProperty(labelName);
                 //var beforeBackground = property.GetValue(labelName);
                 //property.SetValue(labelName, mySolidColorBrush);
-                property.SetValue("Background", mySolidColorBrush);
+                //property.SetValue("Background", mySolidColorBrush);
 
                 // SY_CommandLabel.Content = string.Empty;
+
             }
             catch (Exception e)
             {

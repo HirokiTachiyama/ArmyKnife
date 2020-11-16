@@ -34,13 +34,12 @@
                         <RowDefinition />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="91*"/>
-                        <ColumnDefinition Width="306*"/>
-                        <ColumnDefinition Width="397*"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
 
                     <!-- 左、テキストエリア -->
-                    <TextBox Name="DW_PageContentTextBox" Grid.Row="0" Grid.Column="0" AcceptsReturn="True" Text="TextBox" Grid.ColumnSpan="2"/>
+                    <TextBox Name="DW_PageContentTextBox" Grid.Row="0" AcceptsReturn="True" Text="TextBox" HorizontalAlignment="Center" Width="397"/>
 
                     <!-- 右、各種ラベル、ボタン -->
                     <Canvas Grid.Row="0" Grid.Column="2">
@@ -258,7 +257,7 @@
 
             </TabItem>
             <TabItem Name="LV_TabItem" Header="LogViewer" HorizontalAlignment="Center" Height="20" VerticalAlignment="Center">
-                <Grid Background="#FFE5E5E5"/>
+                <Grid Name="LV_Grid" Background="#FFE5E5E5"/>
             </TabItem>
             <TabItem Name="RM_TabItem" Header="RedMine" HorizontalAlignment="Center" Height="20" VerticalAlignment="Center">
                 <Grid Background="#FFE5E5E5"/>
