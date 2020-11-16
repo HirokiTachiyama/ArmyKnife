@@ -421,14 +421,71 @@ namespace ArmyKnife
 
         void do_sashite()
         {
-            string tmp = SY_CommandLabel.Content.ToString();
 
-            SolidColorBrush mySolidColorBrush = new SolidColorBrush(Colors.SteelBlue);
-            // アルファ値で、透過するようにしている。255は完全な不透明 0 は完全な透明
-            SY_GobanGrid77.Background = mySolidColorBrush;
+            try
+            {
+                string tmp = SY_CommandLabel.Content.ToString();
 
-            // SY_CommandLabel.Content = string.Empty;
+                char teban = tmp[0];
+                char suji = tmp[1];
+                char dan = tmp[2];
+                SY_CommandLabel.Content = teban + "HH" + suji + "HH" + dan + "HH";
+
+                string labelName = "SY_GobanGrid" + suji + change_dan(dan);
+
+                SolidColorBrush mySolidColorBrush = new SolidColorBrush(Colors.SteelBlue);
+                // アルファ値で、透過するようにしている。255は完全な不透明 0 は完全な透明
+                SY_GobanGrid77.Background = mySolidColorBrush;
+
+                Debug.WriteLine(labelName);
+
+                var property = typeof(Label).GetProperty(labelName);
+                //var beforeBackground = property.GetValue(labelName);
+                //property.SetValue(labelName, mySolidColorBrush);
+                property.SetValue("Background", mySolidColorBrush);
+
+                // SY_CommandLabel.Content = string.Empty;
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e);
+            }
+
+
         }
 
+        string change_suji(char _suji)
+        {
+            switch (_suji)
+            {
+                case '1': return "8";
+                case '2': return "7";
+                case '3': return "6";
+                case '4': return "5";
+                case '5': return "4";
+                case '6': return "3";
+                case '7': return "2";
+                case '8': return "1";
+                case '9': return "0";
+                default: return  "-1";
+            }
+        }
+
+        string change_dan(char _dan)
+        {
+            switch (_dan)
+            {
+                case '一': return "1";
+                case '二': return "2";
+                case '三': return "3";
+                case '四': return "4";
+                case '五': return "5";
+                case '六': return "6";
+                case '七': return "7";
+                case '八': return "8";
+                case '九': return "9";
+                default: return "-1";
+            }
+        }
     }
 }
