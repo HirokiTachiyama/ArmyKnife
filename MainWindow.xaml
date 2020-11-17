@@ -70,186 +70,9 @@
                     <Label Name="SY_GoteLabel"    Content="後手" Canvas.Left="10" Canvas.Top="16" Width="300"/>
                     <Label Name="SY_CommandLabel" Content="Command" Canvas.Left="335" Canvas.Top="16" Width="314"/>
 
+                    <Grid Name="SY_GobanGrid"  Height="250" Width="300" Canvas.Left="35" Canvas.Top="47" ShowGridLines="True" Background="#EDC17E"/>
 
-                    <Grid Name="SY_GobanGrid" Height="254" Width="300" Canvas.Left="35" Canvas.Top="47" ShowGridLines="True">
-
-                        <Grid.RowDefinitions>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                        </Grid.RowDefinitions>
-
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="30"/>
-                            <ColumnDefinition Width="30"/>
-                            <ColumnDefinition Width="30"/>
-                            <ColumnDefinition Width="30"/>
-                            <ColumnDefinition Width="30"/>
-                            <ColumnDefinition Width="30"/>
-                            <ColumnDefinition Width="30"/>
-                            <ColumnDefinition Width="30"/>
-                            <ColumnDefinition Width="30"/>
-                            <ColumnDefinition Width="30"/>
-                        </Grid.ColumnDefinitions>
-
-                        <!-- 碁盤 -->
-                        <Label Grid.Row="0" Grid.Column="0" Content="9" HorizontalAlignment="Center"/>
-                        <Label Grid.Row="0" Grid.Column="1" Content="8" HorizontalAlignment="Center"/>
-                        <Label Grid.Row="0" Grid.Column="2" Content="7" HorizontalAlignment="Center"/>
-                        <Label Grid.Row="0" Grid.Column="3" Content="6" HorizontalAlignment="Center"/>
-                        <Label Grid.Row="0" Grid.Column="4" Content="5" HorizontalAlignment="Center"/>
-                        <Label Grid.Row="0" Grid.Column="5" Content="4" HorizontalAlignment="Center"/>
-                        <Label Grid.Row="0" Grid.Column="6" Content="3" HorizontalAlignment="Center"/>
-                        <Label Grid.Row="0" Grid.Column="7" Content="2" HorizontalAlignment="Center"/>
-                        <Label Grid.Row="0" Grid.Column="8" Content="1" HorizontalAlignment="Center"/>
-
-                        <Label Grid.Row="1" Grid.Column="9" Content="一" HorizontalAlignment="Center"/>
-                        <Label Grid.Row="2" Grid.Column="9" Content="二" HorizontalAlignment="Center"/>
-                        <Label Grid.Row="3" Grid.Column="9" Content="三" HorizontalAlignment="Center"/>
-                        <Label Grid.Row="4" Grid.Column="9" Content="四" HorizontalAlignment="Center"/>
-                        <Label Grid.Row="5" Grid.Column="9" Content="五" HorizontalAlignment="Center"/>
-                        <Label Grid.Row="6" Grid.Column="9" Content="六" HorizontalAlignment="Center"/>
-                        <Label Grid.Row="7" Grid.Column="9" Content="七" HorizontalAlignment="Center"/>
-                        <Label Grid.Row="8" Grid.Column="9" Content="八" HorizontalAlignment="Center"/>
-                        <Label Grid.Row="9" Grid.Column="9" Content="九" HorizontalAlignment="Center"/>
-
-                        <!-- 後手側 -->
-                        <Label Name="SY_GobanGrid11" Grid.Row="1" Grid.Column="8" Content="香" HorizontalAlignment="Center" VerticalAlignment="Center">
-                            <Label.RenderTransform>
-                                <RotateTransform Angle="180" CenterX="11" CenterY="13"/>
-                            </Label.RenderTransform>
-                        </Label>
-                        <Label Name="SY_GobanGrid21" Grid.Row="1" Grid.Column="7" Content="桂" HorizontalAlignment="Center">
-                            <Label.RenderTransform>
-                                <RotateTransform Angle="180" CenterX="11" CenterY="13"/>
-                            </Label.RenderTransform>
-                        </Label>
-                        <Label Name="SY_GobanGrid31" Grid.Row="1" Grid.Column="6" Content="銀" HorizontalAlignment="Center">
-                            <Label.RenderTransform>
-                                <RotateTransform Angle="180" CenterX="11" CenterY="13"/>
-                            </Label.RenderTransform>
-                        </Label>
-                        <Label Name="SY_GobanGrid41" Grid.Row="1" Grid.Column="5" Content="金" HorizontalAlignment="Center" >
-                            <Label.RenderTransform>
-                                <RotateTransform Angle="180" CenterX="11" CenterY="13"/>
-                            </Label.RenderTransform>
-                        </Label>
-                        <Label Name="SY_GobanGrid51" Grid.Row="1" Grid.Column="4" Content="玉" HorizontalAlignment="Center">
-                            <Label.RenderTransform>
-                                <RotateTransform Angle="180" CenterX="11" CenterY="13"/>
-                            </Label.RenderTransform>
-                        </Label>
-                        <Label Name="SY_GobanGrid61" Grid.Row="1" Grid.Column="3" Content="金" HorizontalAlignment="Center">
-                            <Label.RenderTransform>
-                                <RotateTransform Angle="180" CenterX="11" CenterY="13"/>
-                            </Label.RenderTransform>
-                        </Label>
-                        <Label Name="SY_GobanGrid71" Grid.Row="1" Grid.Column="2" Content="銀" HorizontalAlignment="Center">
-                            <Label.RenderTransform>
-                                <RotateTransform Angle="180" CenterX="11" CenterY="13"/>
-                            </Label.RenderTransform>
-                        </Label>
-
-                        <Label Name="SY_GobanGrid81" Grid.Row="1" Grid.Column="1" Content="桂" HorizontalAlignment="Center">
-                            <Label.RenderTransform>
-                                <RotateTransform Angle="180" CenterX="11" CenterY="13"/>
-                            </Label.RenderTransform>
-                        </Label>
-                        <Label Name="SY_GobanGrid91" Grid.Row="1" Grid.Column="0" Content="香" HorizontalAlignment="Center" >
-                            <Label.RenderTransform>
-                                <RotateTransform Angle="180" CenterX="11" CenterY="13"/>
-                            </Label.RenderTransform>
-                        </Label>
-
-                        <Label Name="SY_GobanGrid22" Grid.Row="2" Grid.Column="7" Content="角" HorizontalAlignment="Center">
-                            <Label.RenderTransform>
-                                <RotateTransform Angle="180" CenterX="11" CenterY="13"/>
-                            </Label.RenderTransform>
-                        </Label>
-                        <Label Name="SY_GobanGrid82" Grid.Row="2" Grid.Column="1" Content="飛" HorizontalAlignment="Center">
-                            <Label.RenderTransform>
-                                <RotateTransform Angle="180" CenterX="11" CenterY="13"/>
-                            </Label.RenderTransform>
-                        </Label>
-                        <Label Name="SY_GobanGrid13" Grid.Row="3" Grid.Column="8" Content="歩" HorizontalAlignment="Center">
-                            <Label.RenderTransform>
-                                <RotateTransform Angle="180" CenterX="11" CenterY="13"/>
-                            </Label.RenderTransform>
-                        </Label>
-                        <Label Name="SY_GobanGrid23" Grid.Row="3" Grid.Column="7" Content="歩" HorizontalAlignment="Center">
-                            <Label.RenderTransform>
-                                <RotateTransform Angle="180" CenterX="11" CenterY="13"/>
-                            </Label.RenderTransform>
-                        </Label>
-                        <Label Name="SY_GobanGrid33" Grid.Row="3" Grid.Column="6" Content="歩" HorizontalAlignment="Center">
-                            <Label.RenderTransform>
-                                <RotateTransform Angle="180" CenterX="11" CenterY="13"/>
-                            </Label.RenderTransform>
-                        </Label>
-                        <Label Name="SY_GobanGrid43" Grid.Row="3" Grid.Column="5" Content="歩" HorizontalAlignment="Center">
-                            <Label.RenderTransform>
-                                <RotateTransform Angle="180" CenterX="11" CenterY="13"/>
-                            </Label.RenderTransform>
-                        </Label>
-                        <Label Name="SY_GobanGrid53" Grid.Row="3" Grid.Column="4" Content="歩" HorizontalAlignment="Center">
-                            <Label.RenderTransform>
-                                <RotateTransform Angle="180" CenterX="11" CenterY="13"/>
-                            </Label.RenderTransform>
-                        </Label>
-                        <Label Name="SY_GobanGrid63" Grid.Row="3" Grid.Column="3" Content="歩" HorizontalAlignment="Center">
-                            <Label.RenderTransform>
-                                <RotateTransform Angle="180" CenterX="11" CenterY="13"/>
-                            </Label.RenderTransform>
-                        </Label>
-                        <Label Name="SY_GobanGrid73" Grid.Row="3" Grid.Column="2" Content="歩" HorizontalAlignment="Center">
-                            <Label.RenderTransform>
-                                <RotateTransform Angle="180" CenterX="11" CenterY="13"/>
-                            </Label.RenderTransform>
-                        </Label>
-                        <Label Name="SY_GobanGrid83" Grid.Row="3" Grid.Column="1" Content="歩" HorizontalAlignment="Center">
-                            <Label.RenderTransform>
-                                <RotateTransform Angle="180" CenterX="11" CenterY="13"/>
-                            </Label.RenderTransform>
-                        </Label>
-                        <Label Name="SY_GobanGrid93" Grid.Row="3" Grid.Column="0" Content="歩" HorizontalAlignment="Center">
-                            <Label.RenderTransform>
-                                <RotateTransform Angle="180" CenterX="11" CenterY="13"/>
-                            </Label.RenderTransform>
-                        </Label>
-
-                        <!-- 先手側 -->
-                        <Label Name="SY_GobanGrid19" Grid.Row="9" Grid.Column="8" Content="香" HorizontalAlignment="Center"/>
-                        <Label Name="SY_GobanGrid29" Grid.Row="9" Grid.Column="7" Content="桂" HorizontalAlignment="Center"/>
-                        <Label Name="SY_GobanGrid39" Grid.Row="9" Grid.Column="6" Content="銀" HorizontalAlignment="Center"/>
-                        <Label Name="SY_GobanGrid49" Grid.Row="9" Grid.Column="5" Content="金" HorizontalAlignment="Center"/>
-                        <Label Name="SY_GobanGrid59" Grid.Row="9" Grid.Column="4" Content="玉" HorizontalAlignment="Center"/>
-                        <Label Name="SY_GobanGrid69" Grid.Row="9" Grid.Column="3" Content="金" HorizontalAlignment="Center"/>
-                        <Label Name="SY_GobanGrid79" Grid.Row="9" Grid.Column="2" Content="銀" HorizontalAlignment="Center"/>
-                        <Label Name="SY_GobanGrid89" Grid.Row="9" Grid.Column="1" Content="桂" HorizontalAlignment="Center"/>
-                        <Label Name="SY_GobanGrid99" Grid.Row="9" Grid.Column="0" Content="香" HorizontalAlignment="Center"/>
-
-                        <Label Name="SY_GobanGrid28" Grid.Row="8" Grid.Column="7" Content="飛" HorizontalAlignment="Center"/>
-                        <Label Name="SY_GobanGrid88" Grid.Row="8" Grid.Column="1" Content="角" HorizontalAlignment="Center"/>
-
-                        <Label Name="SY_GobanGrid17" Grid.Row="7" Grid.Column="8" Content="歩" HorizontalAlignment="Center"/>
-                        <Label Name="SY_GobanGrid27" Grid.Row="7" Grid.Column="7" Content="歩" HorizontalAlignment="Center"/>
-                        <Label Name="SY_GobanGrid37" Grid.Row="7" Grid.Column="6" Content="歩" HorizontalAlignment="Center"/>
-                        <Label Name="SY_GobanGrid47" Grid.Row="7" Grid.Column="5" Content="歩" HorizontalAlignment="Center"/>
-                        <Label Name="SY_GobanGrid57" Grid.Row="7" Grid.Column="4" Content="歩" HorizontalAlignment="Center"/>
-                        <Label Name="SY_GobanGrid67" Grid.Row="7" Grid.Column="3" Content="歩" HorizontalAlignment="Center"/>
-                        <Label Name="SY_GobanGrid77" Grid.Row="7" Grid.Column="2" Content="歩" HorizontalAlignment="Center"/>
-                        <Label Name="SY_GobanGrid87" Grid.Row="7" Grid.Column="1" Content="歩" HorizontalAlignment="Center"/>
-                        <Label Name="SY_GobanGrid97" Grid.Row="7" Grid.Column="0" Content="歩" HorizontalAlignment="Center"/>
-
-                    </Grid>
-                    <TextBox Name="testTB" Canvas.Left="412" Canvas.Top="47" Text="TextBox" TextWrapping="Wrap" Width="372" Height="261" TextChanged="testTB_TextChanged"/>
+                        <TextBox Name="testTB" Canvas.Left="412" Canvas.Top="47" Text="TextBox" TextWrapping="Wrap" Width="372" Height="261" TextChanged="testTB_TextChanged"/>
                     <TextBox Name="shogitb" Canvas.Left="182" Canvas.Top="337" Text="TextBox" TextWrapping="Wrap" Width="467"/>
                     <Button Name="shogibutton" Content="Button" Canvas.Left="685" Canvas.Top="317" Canvas.Right="10" Click="shogibutton_ClickAsync"/>
 
@@ -257,7 +80,186 @@
 
             </TabItem>
             <TabItem Name="LV_TabItem" Header="LogViewer" HorizontalAlignment="Center" Height="20" VerticalAlignment="Center">
-                <Grid Name="LV_Grid" Background="#FFE5E5E5"/>
+
+                <Grid Name="SY_GobanGrid_BK" Height="254" Width="300" Canvas.Left="35" Canvas.Top="47" ShowGridLines="True">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="30"/>
+                        <ColumnDefinition Width="30"/>
+                        <ColumnDefinition Width="30"/>
+                        <ColumnDefinition Width="30"/>
+                        <ColumnDefinition Width="30"/>
+                        <ColumnDefinition Width="30"/>
+                        <ColumnDefinition Width="30"/>
+                        <ColumnDefinition Width="30"/>
+                        <ColumnDefinition Width="30"/>
+                        <ColumnDefinition Width="30"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- 碁盤 -->
+                    <Label Grid.Row="0" Grid.Column="0" Content="9" HorizontalAlignment="Center"/>
+                    <Label Grid.Row="0" Grid.Column="1" Content="8" HorizontalAlignment="Center"/>
+                    <Label Grid.Row="0" Grid.Column="2" Content="7" HorizontalAlignment="Center"/>
+                    <Label Grid.Row="0" Grid.Column="3" Content="6" HorizontalAlignment="Center"/>
+                    <Label Grid.Row="0" Grid.Column="4" Content="5" HorizontalAlignment="Center"/>
+                    <Label Grid.Row="0" Grid.Column="5" Content="4" HorizontalAlignment="Center"/>
+                    <Label Grid.Row="0" Grid.Column="6" Content="3" HorizontalAlignment="Center"/>
+                    <Label Grid.Row="0" Grid.Column="7" Content="2" HorizontalAlignment="Center"/>
+                    <Label Grid.Row="0" Grid.Column="8" Content="1" HorizontalAlignment="Center"/>
+
+                    <Label Grid.Row="1" Grid.Column="9" Content="一" HorizontalAlignment="Center"/>
+                    <Label Grid.Row="2" Grid.Column="9" Content="二" HorizontalAlignment="Center"/>
+                    <Label Grid.Row="3" Grid.Column="9" Content="三" HorizontalAlignment="Center"/>
+                    <Label Grid.Row="4" Grid.Column="9" Content="四" HorizontalAlignment="Center"/>
+                    <Label Grid.Row="5" Grid.Column="9" Content="五" HorizontalAlignment="Center"/>
+                    <Label Grid.Row="6" Grid.Column="9" Content="六" HorizontalAlignment="Center"/>
+                    <Label Grid.Row="7" Grid.Column="9" Content="七" HorizontalAlignment="Center"/>
+                    <Label Grid.Row="8" Grid.Column="9" Content="八" HorizontalAlignment="Center"/>
+                    <Label Grid.Row="9" Grid.Column="9" Content="九" HorizontalAlignment="Center"/>
+
+                    <!-- 後手側 -->
+                    <Label Name="SY_GobanGrid11" Grid.Row="1" Grid.Column="8" Content="香" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Label.RenderTransform>
+                            <RotateTransform Angle="180" CenterX="11" CenterY="13"/>
+                        </Label.RenderTransform>
+                    </Label>
+                    <Label Name="SY_GobanGrid21" Grid.Row="1" Grid.Column="7" Content="桂" HorizontalAlignment="Center">
+                        <Label.RenderTransform>
+                            <RotateTransform Angle="180" CenterX="11" CenterY="13"/>
+                        </Label.RenderTransform>
+                    </Label>
+                    <Label Name="SY_GobanGrid31" Grid.Row="1" Grid.Column="6" Content="銀" HorizontalAlignment="Center">
+                        <Label.RenderTransform>
+                            <RotateTransform Angle="180" CenterX="11" CenterY="13"/>
+                        </Label.RenderTransform>
+                    </Label>
+                    <Label Name="SY_GobanGrid41" Grid.Row="1" Grid.Column="5" Content="金" HorizontalAlignment="Center" >
+                        <Label.RenderTransform>
+                            <RotateTransform Angle="180" CenterX="11" CenterY="13"/>
+                        </Label.RenderTransform>
+                    </Label>
+                    <Label Name="SY_GobanGrid51" Grid.Row="1" Grid.Column="4" Content="玉" HorizontalAlignment="Center">
+                        <Label.RenderTransform>
+                            <RotateTransform Angle="180" CenterX="11" CenterY="13"/>
+                        </Label.RenderTransform>
+                    </Label>
+                    <Label Name="SY_GobanGrid61" Grid.Row="1" Grid.Column="3" Content="金" HorizontalAlignment="Center">
+                        <Label.RenderTransform>
+                            <RotateTransform Angle="180" CenterX="11" CenterY="13"/>
+                        </Label.RenderTransform>
+                    </Label>
+                    <Label Name="SY_GobanGrid71" Grid.Row="1" Grid.Column="2" Content="銀" HorizontalAlignment="Center">
+                        <Label.RenderTransform>
+                            <RotateTransform Angle="180" CenterX="11" CenterY="13"/>
+                        </Label.RenderTransform>
+                    </Label>
+
+                    <Label Name="SY_GobanGrid81" Grid.Row="1" Grid.Column="1" Content="桂" HorizontalAlignment="Center">
+                        <Label.RenderTransform>
+                            <RotateTransform Angle="180" CenterX="11" CenterY="13"/>
+                        </Label.RenderTransform>
+                    </Label>
+                    <Label Name="SY_GobanGrid91" Grid.Row="1" Grid.Column="0" Content="香" HorizontalAlignment="Center" >
+                        <Label.RenderTransform>
+                            <RotateTransform Angle="180" CenterX="11" CenterY="13"/>
+                        </Label.RenderTransform>
+                    </Label>
+
+                    <Label Name="SY_GobanGrid22" Grid.Row="2" Grid.Column="7" Content="角" HorizontalAlignment="Center">
+                        <Label.RenderTransform>
+                            <RotateTransform Angle="180" CenterX="11" CenterY="13"/>
+                        </Label.RenderTransform>
+                    </Label>
+                    <Label Name="SY_GobanGrid82" Grid.Row="2" Grid.Column="1" Content="飛" HorizontalAlignment="Center">
+                        <Label.RenderTransform>
+                            <RotateTransform Angle="180" CenterX="11" CenterY="13"/>
+                        </Label.RenderTransform>
+                    </Label>
+                    <Label Name="SY_GobanGrid13" Grid.Row="3" Grid.Column="8" Content="歩" HorizontalAlignment="Center">
+                        <Label.RenderTransform>
+                            <RotateTransform Angle="180" CenterX="11" CenterY="13"/>
+                        </Label.RenderTransform>
+                    </Label>
+                    <Label Name="SY_GobanGrid23" Grid.Row="3" Grid.Column="7" Content="歩" HorizontalAlignment="Center">
+                        <Label.RenderTransform>
+                            <RotateTransform Angle="180" CenterX="11" CenterY="13"/>
+                        </Label.RenderTransform>
+                    </Label>
+                    <Label Name="SY_GobanGrid33" Grid.Row="3" Grid.Column="6" Content="歩" HorizontalAlignment="Center">
+                        <Label.RenderTransform>
+                            <RotateTransform Angle="180" CenterX="11" CenterY="13"/>
+                        </Label.RenderTransform>
+                    </Label>
+                    <Label Name="SY_GobanGrid43" Grid.Row="3" Grid.Column="5" Content="歩" HorizontalAlignment="Center">
+                        <Label.RenderTransform>
+                            <RotateTransform Angle="180" CenterX="11" CenterY="13"/>
+                        </Label.RenderTransform>
+                    </Label>
+                    <Label Name="SY_GobanGrid53" Grid.Row="3" Grid.Column="4" Content="歩" HorizontalAlignment="Center">
+                        <Label.RenderTransform>
+                            <RotateTransform Angle="180" CenterX="11" CenterY="13"/>
+                        </Label.RenderTransform>
+                    </Label>
+                    <Label Name="SY_GobanGrid63" Grid.Row="3" Grid.Column="3" Content="歩" HorizontalAlignment="Center">
+                        <Label.RenderTransform>
+                            <RotateTransform Angle="180" CenterX="11" CenterY="13"/>
+                        </Label.RenderTransform>
+                    </Label>
+                    <Label Name="SY_GobanGrid73" Grid.Row="3" Grid.Column="2" Content="歩" HorizontalAlignment="Center">
+                        <Label.RenderTransform>
+                            <RotateTransform Angle="180" CenterX="11" CenterY="13"/>
+                        </Label.RenderTransform>
+                    </Label>
+                    <Label Name="SY_GobanGrid83" Grid.Row="3" Grid.Column="1" Content="歩" HorizontalAlignment="Center">
+                        <Label.RenderTransform>
+                            <RotateTransform Angle="180" CenterX="11" CenterY="13"/>
+                        </Label.RenderTransform>
+                    </Label>
+                    <Label Name="SY_GobanGrid93" Grid.Row="3" Grid.Column="0" Content="歩" HorizontalAlignment="Center">
+                        <Label.RenderTransform>
+                            <RotateTransform Angle="180" CenterX="11" CenterY="13"/>
+                        </Label.RenderTransform>
+                    </Label>
+
+                    <!-- 先手側 -->
+                    <Label Name="SY_GobanGrid19" Grid.Row="9" Grid.Column="8" Content="香" HorizontalAlignment="Center"/>
+                    <Label Name="SY_GobanGrid29" Grid.Row="9" Grid.Column="7" Content="桂" HorizontalAlignment="Center"/>
+                    <Label Name="SY_GobanGrid39" Grid.Row="9" Grid.Column="6" Content="銀" HorizontalAlignment="Center"/>
+                    <Label Name="SY_GobanGrid49" Grid.Row="9" Grid.Column="5" Content="金" HorizontalAlignment="Center"/>
+                    <Label Name="SY_GobanGrid59" Grid.Row="9" Grid.Column="4" Content="玉" HorizontalAlignment="Center"/>
+                    <Label Name="SY_GobanGrid69" Grid.Row="9" Grid.Column="3" Content="金" HorizontalAlignment="Center"/>
+                    <Label Name="SY_GobanGrid79" Grid.Row="9" Grid.Column="2" Content="銀" HorizontalAlignment="Center"/>
+                    <Label Name="SY_GobanGrid89" Grid.Row="9" Grid.Column="1" Content="桂" HorizontalAlignment="Center"/>
+                    <Label Name="SY_GobanGrid99" Grid.Row="9" Grid.Column="0" Content="香" HorizontalAlignment="Center"/>
+
+                    <Label Name="SY_GobanGrid28" Grid.Row="8" Grid.Column="7" Content="飛" HorizontalAlignment="Center"/>
+                    <Label Name="SY_GobanGrid88" Grid.Row="8" Grid.Column="1" Content="角" HorizontalAlignment="Center"/>
+
+                    <Label Name="SY_GobanGrid17" Grid.Row="7" Grid.Column="8" Content="歩" HorizontalAlignment="Center"/>
+                    <Label Name="SY_GobanGrid27" Grid.Row="7" Grid.Column="7" Content="歩" HorizontalAlignment="Center"/>
+                    <Label Name="SY_GobanGrid37" Grid.Row="7" Grid.Column="6" Content="歩" HorizontalAlignment="Center"/>
+                    <Label Name="SY_GobanGrid47" Grid.Row="7" Grid.Column="5" Content="歩" HorizontalAlignment="Center"/>
+                    <Label Name="SY_GobanGrid57" Grid.Row="7" Grid.Column="4" Content="歩" HorizontalAlignment="Center"/>
+                    <Label Name="SY_GobanGrid67" Grid.Row="7" Grid.Column="3" Content="歩" HorizontalAlignment="Center"/>
+                    <Label Name="SY_GobanGrid77" Grid.Row="7" Grid.Column="2" Content="歩" HorizontalAlignment="Center"/>
+                    <Label Name="SY_GobanGrid87" Grid.Row="7" Grid.Column="1" Content="歩" HorizontalAlignment="Center"/>
+                    <Label Name="SY_GobanGrid97" Grid.Row="7" Grid.Column="0" Content="歩" HorizontalAlignment="Center"/>
+
+                </Grid>
+
             </TabItem>
             <TabItem Name="RM_TabItem" Header="RedMine" HorizontalAlignment="Center" Height="20" VerticalAlignment="Center">
                 <Grid Background="#FFE5E5E5"/>
