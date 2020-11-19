@@ -53,6 +53,9 @@ namespace ArmyKnife
 
         // 将棋タブ 関連変数
         private string SY_status = "棋譜";
+        Label[,] gobanLabel;
+
+
 
         // Redmineタブ 関連変数
         private string RM_status = "Redmine";
@@ -361,9 +364,13 @@ namespace ArmyKnife
                 case Key.O or Key.M or Key.R or Key.Y or Key.T or Key.H:
                     tmp = e.Key.ToString();
                     break;
-                case Key.Enter:
+                case Key.Escape:
                     //do_sashite();
+                    // ▲, △で碁盤の向きを変更
                     make_goban(SY_CommandLabel.Content.ToString()[0]);
+                    break;
+                case Key.Enter:
+                    do_sashite(SY_CommandLabel.Content.ToString());
                     break;
                 default:
                     SY_CommandLabel.Content = "";
@@ -397,11 +404,7 @@ namespace ArmyKnife
                 SY_GobanGrid.ColumnDefinitions.Add(suji[i]);
             }
 
-            Label[,] gobanLabel = new Label[10, 10];
-
-
-
-
+            gobanLabel = new Label[11, 11];
 
             if (_teban == '▲')
             {
@@ -424,7 +427,7 @@ namespace ArmyKnife
                     {
                         gobanLabel[j + 1, i + 1] = new Label
                         {
-                            Content = $"{j + 1}{suji2kanji(i+1)}",
+                            //Content = $"{j + 1}{suji2kanji(i+1)}",
                             HorizontalAlignment = System.Windows.HorizontalAlignment.Center
                         };
                         Grid.SetRow(gobanLabel[j + 1, i + 1], i+1);
@@ -436,17 +439,33 @@ namespace ArmyKnife
                 // 段の目盛
                 for(int i=0; i<9; i++)
                 {
-                    gobanLabel[i, 9] = new Label
+                    gobanLabel[i, 10] = new Label
                     {
                         Content = suji2kanji(i + 1),
                         HorizontalAlignment = System.Windows.HorizontalAlignment.Center,
                         FontWeight = FontWeights.Bold
                     };
-                    Grid.SetRow(gobanLabel[i, 9], i+1);
-                    Grid.SetColumn(gobanLabel[i, 9], 9);
-                    SY_GobanGrid.Children.Add(gobanLabel[i, 9]);
+                    Grid.SetRow(gobanLabel[i, 10], i+1);
+                    Grid.SetColumn(gobanLabel[i, 10], 9);
+                    SY_GobanGrid.Children.Add(gobanLabel[i, 10]);
                 }
-                
+
+                // 敵陣の向きを変更
+                for (int i=1; i<=9; i++)
+                {
+                    gobanLabel[i, 1].RenderTransform =
+                        gobanLabel[i, 2].RenderTransform =
+                        gobanLabel[i, 3].RenderTransform = new RotateTransform(180, 11, 13);
+                   // gobanLabel[i, 1].Foreground =
+                   //     gobanLabel[i, 2].Foreground =
+                   //     gobanLabel[i, 3].Foreground =
+                   //     new SolidColorBrush(Colors.ForestGreen);
+                }
+
+                // 王・玉
+                gobanLabel[5, 1].Content = "玉";
+                gobanLabel[5, 9].Content = "王";
+
 
             }
             else if (_teban == '△')
@@ -472,7 +491,7 @@ namespace ArmyKnife
                     {
                         gobanLabel[i + 1, j + 1] = new Label
                         {
-                            Content = $"{i + 1}{suji2kanji(j+1)}",
+                            // Content = $"{i + 1}{suji2kanji(j+1)}",
                             HorizontalAlignment = System.Windows.HorizontalAlignment.Center
                         };
                         Grid.SetRow(gobanLabel[i + 1, j + 1], 9 - j);
@@ -484,61 +503,55 @@ namespace ArmyKnife
                 // 段の目盛
                 for (int i = 0; i < 9; i++)
                 {
-                    gobanLabel[9 - i, 9] = new Label
+                    gobanLabel[9 - i, 10] = new Label
                     {
                         Content = suji2kanji(i + 1),
                         HorizontalAlignment = System.Windows.HorizontalAlignment.Center,
                         FontWeight = FontWeights.Bold
                     };
-                    Grid.SetRow(gobanLabel[9 - i, 9], 9 - i);
-                    Grid.SetColumn(gobanLabel[9 - i, 9], 9);
-                    SY_GobanGrid.Children.Add(gobanLabel[9 - i, 9]);
+                    Grid.SetRow(gobanLabel[9 - i, 10], 9 - i);
+                    Grid.SetColumn(gobanLabel[9 - i, 10], 9);
+                    SY_GobanGrid.Children.Add(gobanLabel[9 - i, 10]);
                 }
 
+                // 敵陣の向きを変更
+                for (int i = 1; i <= 9; i++)
+                {
+                    gobanLabel[i, 7].RenderTransform =
+                        gobanLabel[i, 8].RenderTransform =
+                        gobanLabel[i, 9].RenderTransform = new RotateTransform(180, 11, 13);
+                    //gobanLabel[i, 7].Foreground =
+                    //    gobanLabel[i, 8].Foreground =
+                    //    gobanLabel[i, 9].Foreground =
+                    //    new SolidColorBrush(Colors.ForestGreen);
+                }
+
+                // 王・玉
+                gobanLabel[5, 9].Content = "玉";
+                gobanLabel[5, 1].Content = "王";
+                // gobanLabel[5, 1].FontFamily = new FontFamily("K's Japanese Shogi Pieces");
             }
 
             // 駒並べ
-            for(int i=1; i<=8; i++)
-            {
-                gobanLabel[i, 3].Content = "歩";
-                gobanLabel[i, 7].Content = "歩";
-            }
-
-            gobanLabel[1, 1].Content = "香";
-            gobanLabel[2, 1].Content = "桂";
-            gobanLabel[3, 1].Content = "銀";
-            gobanLabel[4, 1].Content = "金";
-            gobanLabel[5, 1].Content = "玉";
-            gobanLabel[6, 1].Content = "金";
-            gobanLabel[7, 1].Content = "銀";
-            gobanLabel[8, 1].Content = "桂";
-            //gobanLabel[9, 1].Content = "香";
-
-            gobanLabel[1, 9].Content = "香";
-
-            /*
-            gobanLabel[1, 9].Content = "香";
-            gobanLabel[2, 9].Content = "桂";
-            gobanLabel[3, 9].Content = "銀";
-            gobanLabel[4, 9].Content = "金";
-            gobanLabel[5, 9].Content = "王";
-            gobanLabel[6, 9].Content = "金";
-            gobanLabel[7, 9].Content = "銀";
-            gobanLabel[8, 9].Content = "桂";
-            gobanLabel[9, 9].Content = "香";
-*/
-
             for (int i = 1; i <= 9; i++)
             {
-                for (int j = 1; j <= 9; j++)
-                {
-                    gobanLabel[i, j].Content = $"{i}{j}";
-                }
-
+                gobanLabel[i, 3].Content = gobanLabel[i, 7].Content = "歩";
             }
-            gobanLabel[0, 0].Content = "h";
-            gobanLabel[0, 3].Content = "o";
-            gobanLabel[0, 9].Content = "g";
+
+            gobanLabel[1, 1].Content = gobanLabel[9, 1].Content =
+                gobanLabel[1, 9].Content = gobanLabel[9, 9].Content = "香";
+
+            gobanLabel[2, 1].Content = gobanLabel[8, 1].Content =
+                gobanLabel[2, 9].Content = gobanLabel[8, 9].Content = "桂";
+
+            gobanLabel[3, 1].Content = gobanLabel[7, 1].Content =
+                gobanLabel[3, 9].Content = gobanLabel[7, 9].Content = "銀";
+
+            gobanLabel[4, 1].Content = gobanLabel[6, 1].Content =
+                gobanLabel[4, 9].Content = gobanLabel[6, 9].Content = "金";
+
+            gobanLabel[2, 2].Content = gobanLabel[8, 8].Content = "角";
+            gobanLabel[2, 8].Content = gobanLabel[8, 2].Content = "飛";
 
 
         }
@@ -579,32 +592,31 @@ namespace ArmyKnife
             }
         }
 
-        void do_sashite()
+        void do_sashite(string _te)
         {
 
             try
             {
-                string tmp = SY_CommandLabel.Content.ToString();
+                char teban = _te[0];
+                int suji = int.Parse(_te[1].ToString());
+                int dan = change_dan(_te[2]);
+                char koma = _te[3];
+                // SY_CommandLabel.Content = teban + "HH" + suji + "HH" + dan + "HH";
 
-                char teban = tmp[0];
-                char suji = tmp[1];
-                char dan = tmp[2];
-                SY_CommandLabel.Content = teban + "HH" + suji + "HH" + dan + "HH";
+                gobanLabel[suji, dan].Content = koma.ToString();
 
-                string labelName = "SY_GobanGrid" + suji + change_dan(dan);
-
-                SolidColorBrush mySolidColorBrush = new SolidColorBrush(Colors.SteelBlue);
+                if (teban == '▲')
+                {
+                    gobanLabel[suji, dan].RenderTransform = new RotateTransform(0, 0, 0);
+                }
+                else if (teban == '△')
+                {
+                    gobanLabel[suji, dan].RenderTransform = new RotateTransform(180, 11, 13);
+                }
+                
+                // SolidColorBrush mySolidColorBrush = new SolidColorBrush(Colors.SteelBlue);
                 // アルファ値で、透過するようにしている。255は完全な不透明 0 は完全な透明
-                SY_GobanGrid77.Background = mySolidColorBrush;
 
-                Debug.WriteLine(labelName);
-
-                var property = typeof(Label).GetProperty(labelName);
-                //var beforeBackground = property.GetValue(labelName);
-                //property.SetValue(labelName, mySolidColorBrush);
-                //property.SetValue("Background", mySolidColorBrush);
-
-                // SY_CommandLabel.Content = string.Empty;
 
             }
             catch (Exception e)
@@ -632,20 +644,20 @@ namespace ArmyKnife
             }
         }
 
-        string change_dan(char _dan)
+        int change_dan(char _dan)
         {
             switch (_dan)
             {
-                case '一': return "1";
-                case '二': return "2";
-                case '三': return "3";
-                case '四': return "4";
-                case '五': return "5";
-                case '六': return "6";
-                case '七': return "7";
-                case '八': return "8";
-                case '九': return "9";
-                default: return "-1";
+                case '一': return 1;
+                case '二': return 2;
+                case '三': return 3;
+                case '四': return 4;
+                case '五': return 5;
+                case '六': return 6;
+                case '七': return 7;
+                case '八': return 8;
+                case '九': return 9;
+                default: return  -1;
             }
         }
     }
