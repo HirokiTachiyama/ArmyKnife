@@ -54,6 +54,22 @@ namespace ArmyKnife
         // 将棋タブ 関連変数
         private string SY_status = "棋譜";
         Label[,] gobanLabel;
+        RowDefinition[] dan = new RowDefinition[10]; // 行, 段, 横
+        ColumnDefinition[] suji = new ColumnDefinition[10]; // 列, 筋, 縦
+
+        GridLength gridWidth = new GridLength(35); // 1マスの幅
+        GridLength gridheight = new GridLength(45);  // 1マスの高さ
+
+        FontFamily font = new FontFamily("藍原筆文字楷書");
+        int fontSize = 28;
+
+        Transform transformTekijin = new RotateTransform(180, 19, 20);
+        Transform transformJijin = new RotateTransform(0, 0, 0);
+
+        SolidColorBrush mySolidColorBrushCurrent = new SolidColorBrush(Colors.LightPink);
+        SolidColorBrush mySolidColorBrushOriginal = new SolidColorBrush(Colors.BurlyWood);
+        int suji_before=0, dan_before=0;
+
 
 
 
@@ -355,19 +371,35 @@ namespace ArmyKnife
             {
                 case Key.S: // 先手番
                     tmp = "▲"; break;
-                case Key.D: // 後手番
-                    tmp = "△"; break;
-                case Key.D0 or Key.D1 or Key.D2 or Key.D3 or Key.D4: // "D0", "D1", ...
-                case Key.D5 or Key.D6 or Key.D7 or Key.D8 or Key.D9:
+                case Key.D0 or Key.D1 or Key.D2 or Key.D3 or Key.D4 or // "D0", "D1", ...
+                     Key.D5 or Key.D6 or Key.D7 or Key.D8 or Key.D9:
                     tmp = e.Key.ToString().Substring(1); break;
-                case Key.F or Key.U or Key.K or Key.E or Key.G or Key.I:
-                case Key.O or Key.M or Key.R or Key.Y or Key.T or Key.H:
-                    tmp = e.Key.ToString();
+                case Key.F or Key.U or Key.K or Key.E or Key.I or Key.G or
+                     Key.O or Key.M or Key.R or Key.Y or Key.T or Key.H:
+                    // 入力無しかつ押下がGなら 後手△ を入れる
+                    if (SY_CommandLabel.Content.ToString() == string.Empty && e.Key == Key.G)
+                    {
+                        tmp = "△";
+                    }
+                    // 何か入ってたらそのまま入れる
+                    else if(SY_CommandLabel.Content.ToString() != string.Empty)
+                    {
+                        tmp = e.Key.ToString();
+                    }
                     break;
                 case Key.Escape:
                     //do_sashite();
                     // ▲, △で碁盤の向きを変更
-                    make_goban(SY_CommandLabel.Content.ToString()[0]);
+                    try
+                    {
+                        char teban = SY_CommandLabel.Content.ToString()[0];
+                        if (teban == '▲' || teban == '△')
+                        {
+                            make_goban(SY_CommandLabel.Content.ToString()[0]);
+                        }
+                    }
+                    catch (Exception) { }
+
                     break;
                 case Key.Enter:
                     do_sashite(SY_CommandLabel.Content.ToString());
@@ -385,21 +417,22 @@ namespace ArmyKnife
         {
             SY_GobanGrid.Children.Clear();
             SY_GobanGrid.ShowGridLines = true;
-            RowDefinition[] dan = new RowDefinition[10]; // 行, 段, 横
-            ColumnDefinition[] suji = new ColumnDefinition[10]; // 列, 筋, 縦
+
+
+
 
             // 段, 筋の初期化
-            for(int i=0; i<10; i++)
+            for (int i=0; i<10; i++)
             {
                 dan[i] = new RowDefinition
                 {
-                    Height = new GridLength(25)
+                    Height = gridheight
                 };
                 SY_GobanGrid.RowDefinitions.Add(dan[i]);
 
                 suji[i] = new ColumnDefinition
                 {
-                    Width = new GridLength(30)
+                    Width = gridWidth
                 };
                 SY_GobanGrid.ColumnDefinitions.Add(suji[i]);
             }
@@ -416,7 +449,8 @@ namespace ArmyKnife
                     {
                         Content = i + 1,
                         HorizontalAlignment = System.Windows.HorizontalAlignment.Center,
-                        FontWeight = FontWeights.Bold
+                        FontWeight = FontWeights.Bold,
+                        FontSize = fontSize
                     };
                     Grid.SetRow(gobanLabel[0, i], 0);
                     Grid.SetColumn(gobanLabel[0, i], 8 - i);
@@ -427,8 +461,10 @@ namespace ArmyKnife
                     {
                         gobanLabel[j + 1, i + 1] = new Label
                         {
-                            //Content = $"{j + 1}{suji2kanji(i+1)}",
-                            HorizontalAlignment = System.Windows.HorizontalAlignment.Center
+                            Content = string.Empty,
+                            HorizontalAlignment = System.Windows.HorizontalAlignment.Center,
+                            FontFamily = font,
+                            FontSize = fontSize
                         };
                         Grid.SetRow(gobanLabel[j + 1, i + 1], i+1);
                         Grid.SetColumn(gobanLabel[j + 1, i + 1], 8 - j);
@@ -443,6 +479,8 @@ namespace ArmyKnife
                     {
                         Content = suji2kanji(i + 1),
                         HorizontalAlignment = System.Windows.HorizontalAlignment.Center,
+                        FontFamily = font,
+                        FontSize = fontSize,
                         FontWeight = FontWeights.Bold
                     };
                     Grid.SetRow(gobanLabel[i, 10], i+1);
@@ -455,7 +493,7 @@ namespace ArmyKnife
                 {
                     gobanLabel[i, 1].RenderTransform =
                         gobanLabel[i, 2].RenderTransform =
-                        gobanLabel[i, 3].RenderTransform = new RotateTransform(180, 11, 13);
+                        gobanLabel[i, 3].RenderTransform = transformTekijin;
                    // gobanLabel[i, 1].Foreground =
                    //     gobanLabel[i, 2].Foreground =
                    //     gobanLabel[i, 3].Foreground =
@@ -470,7 +508,6 @@ namespace ArmyKnife
             }
             else if (_teban == '△')
             {
-
                 // 後手番の盤の向き
                 for (int i = 0; i <= 8; i++)
                 {
@@ -480,6 +517,7 @@ namespace ArmyKnife
                     {
                         Content = i + 1,
                         HorizontalAlignment = System.Windows.HorizontalAlignment.Center,
+                        FontSize = fontSize,
                         FontWeight = FontWeights.Bold
                     };
                     Grid.SetRow(gobanLabel[0, 9-i], 0);
@@ -491,7 +529,9 @@ namespace ArmyKnife
                     {
                         gobanLabel[i + 1, j + 1] = new Label
                         {
-                            // Content = $"{i + 1}{suji2kanji(j+1)}",
+                            Content = string.Empty,
+                            FontFamily = font,
+                            FontSize = fontSize,
                             HorizontalAlignment = System.Windows.HorizontalAlignment.Center
                         };
                         Grid.SetRow(gobanLabel[i + 1, j + 1], 9 - j);
@@ -507,6 +547,8 @@ namespace ArmyKnife
                     {
                         Content = suji2kanji(i + 1),
                         HorizontalAlignment = System.Windows.HorizontalAlignment.Center,
+                        FontFamily = font,
+                        FontSize = fontSize,
                         FontWeight = FontWeights.Bold
                     };
                     Grid.SetRow(gobanLabel[9 - i, 10], 9 - i);
@@ -519,7 +561,7 @@ namespace ArmyKnife
                 {
                     gobanLabel[i, 7].RenderTransform =
                         gobanLabel[i, 8].RenderTransform =
-                        gobanLabel[i, 9].RenderTransform = new RotateTransform(180, 11, 13);
+                        gobanLabel[i, 9].RenderTransform = transformTekijin;
                     //gobanLabel[i, 7].Foreground =
                     //    gobanLabel[i, 8].Foreground =
                     //    gobanLabel[i, 9].Foreground =
@@ -529,7 +571,6 @@ namespace ArmyKnife
                 // 王・玉
                 gobanLabel[5, 9].Content = "玉";
                 gobanLabel[5, 1].Content = "王";
-                // gobanLabel[5, 1].FontFamily = new FontFamily("K's Japanese Shogi Pieces");
             }
 
             // 駒並べ
@@ -595,51 +636,42 @@ namespace ArmyKnife
         void do_sashite(string _te)
         {
 
-            try
+            char teban = _te[0];
+            int suji = int.Parse(_te[1].ToString());
+            int dan = change_dan(_te[2]);
+            char koma = _te[3];
+            // SY_CommandLabel.Content = teban + "HH" + suji + "HH" + dan + "HH";
+
+            gobanLabel[suji, dan].Content = koma.ToString();
+            gobanLabel[suji, dan].Background = mySolidColorBrushCurrent;
+            gobanLabel[suji_before, dan_before].Background = mySolidColorBrushOriginal;
+
+            if (teban == '▲')
             {
-                char teban = _te[0];
-                int suji = int.Parse(_te[1].ToString());
-                int dan = change_dan(_te[2]);
-                char koma = _te[3];
-                // SY_CommandLabel.Content = teban + "HH" + suji + "HH" + dan + "HH";
-
-                gobanLabel[suji, dan].Content = koma.ToString();
-
-                if (teban == '▲')
-                {
-                    gobanLabel[suji, dan].RenderTransform = new RotateTransform(0, 0, 0);
-
-                }
-                else if (teban == '△')
-                {
-                    gobanLabel[suji, dan].RenderTransform = new RotateTransform(180, 11, 13);
-                }
-
-                if (koma == '歩')
-                {
-                    if (gobanLabel[suji, dan + 1].Content.ToString() == "歩")
-                    {
-                        gobanLabel[suji, dan + 1].Content = string.Empty;
-                    }
-                    else if (gobanLabel[suji, dan - 1].Content.ToString() == "歩")
-                    {
-                        gobanLabel[suji, dan - 1].Content = string.Empty;
-                    }
-
-
-                }
-
-
-                // SolidColorBrush mySolidColorBrush = new SolidColorBrush(Colors.SteelBlue);
-                // アルファ値で、透過するようにしている。255は完全な不透明 0 は完全な透明
-
-
+                gobanLabel[suji, dan].RenderTransform = transformJijin;
             }
-            catch (Exception e)
+            else if (teban == '△')
             {
-                Debug.WriteLine(e);
+                gobanLabel[suji, dan].RenderTransform = transformTekijin;
             }
 
+            if (koma == '歩')
+            {
+                if (gobanLabel[suji, dan + 1].Content.ToString() == "歩")
+                {
+                    gobanLabel[suji, dan + 1].Content = string.Empty;
+                }
+                else if (gobanLabel[suji, dan - 1].Content.ToString() == "歩")
+                {
+                    gobanLabel[suji, dan - 1].Content = string.Empty;
+                }
+            }
+            // SolidColorBrush mySolidColorBrush = new SolidColorBrush(Colors.SteelBlue);
+            // アルファ値で、透過するようにしている。255は完全な不透明 0 は完全な透明
+
+            suji_before = suji;
+            dan_before = dan;
+            SY_CommandLabel.Content = string.Empty;
 
         }
 

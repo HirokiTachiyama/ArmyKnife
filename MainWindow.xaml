@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ArmyKnife"
         mc:Ignorable="d"
-        Title="ArmyKnife" Height="450" Width="800"
+        Title="ArmyKnife" Height="600" Width="800"
         >
     <Grid>
         <!-- 大外 -->
@@ -66,14 +66,14 @@
 
                 <Canvas>
 
-                    <Label Name="SY_SenteLabel"   Content="先手" Canvas.Left="10" Canvas.Top="306" Width="300"/>
-                    <Label Name="SY_GoteLabel"    Content="後手" Canvas.Left="10" Canvas.Top="16" Width="300"/>
-                    <Label Name="SY_CommandLabel" Content="Command" Canvas.Left="335" Canvas.Top="16" Width="314"/>
+                    <Label Name="SY_SenteLabel"   Content="先手" Canvas.Top="481" Width="300"/>
+                    <Label Name="SY_GoteLabel"    Content="後手" Width="300"/>
+                    <Label Name="SY_CommandLabel" Content="Command" Canvas.Left="382" Canvas.Top="13" Width="314" FontSize="24"/>
 
-                    <Grid Name="SY_GobanGrid"  Height="250" Width="300" Canvas.Left="35" Canvas.Top="47" ShowGridLines="True" Background="#EDC17E"/>
+                    <Grid Name="SY_GobanGrid"  Height="450" Width="350" Canvas.Top="26" ShowGridLines="True" Background="BurlyWood" Canvas.Left="10"/>
 
-                        <TextBox Name="testTB" Canvas.Left="412" Canvas.Top="47" Text="TextBox" TextWrapping="Wrap" Width="372" Height="261" TextChanged="testTB_TextChanged"/>
-                    <TextBox Name="shogitb" Canvas.Left="182" Canvas.Top="337" Text="TextBox" TextWrapping="Wrap" Width="467"/>
+                    <TextBox Name="testTB" Canvas.Left="412" Canvas.Top="97" Text="TextBox" TextWrapping="Wrap" Width="372" Height="261" TextChanged="testTB_TextChanged"/>
+                    <TextBox Name="shogitb" Canvas.Left="412" Canvas.Top="381" Text="TextBox" TextWrapping="Wrap" Width="372"/>
                     <Button Name="shogibutton" Content="Button" Canvas.Left="685" Canvas.Top="317" Canvas.Right="10" Click="shogibutton_ClickAsync"/>
 
                 </Canvas>
