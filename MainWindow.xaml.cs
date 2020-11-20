@@ -49,7 +49,7 @@ namespace ArmyKnife
         // LogViewerタブ 関連変数
         private string LV_logFile;
         private string LV_formatFile;
-        private string LV_status = "Format: NONE, LogFile: NONE";
+        private string LV_status = "";
 
         // 将棋タブ 関連変数
         private string SY_status = "棋譜";
@@ -60,7 +60,9 @@ namespace ArmyKnife
         GridLength gridWidth = new GridLength(35); // 1マスの幅
         GridLength gridheight = new GridLength(45);  // 1マスの高さ
 
-        FontFamily font = new FontFamily("藍原筆文字楷書");
+        //FontFamily font = new FontFamily("藍原筆文字楷書");
+        FontFamily font = new FontFamily("HG正楷書体-PRO");
+        
         int fontSize = 28;
 
         Transform transformTekijin = new RotateTransform(180, 19, 20);
@@ -418,9 +420,6 @@ namespace ArmyKnife
             SY_GobanGrid.Children.Clear();
             SY_GobanGrid.ShowGridLines = true;
 
-
-
-
             // 段, 筋の初期化
             for (int i=0; i<10; i++)
             {
@@ -464,6 +463,7 @@ namespace ArmyKnife
                             Content = string.Empty,
                             HorizontalAlignment = System.Windows.HorizontalAlignment.Center,
                             FontFamily = font,
+                            FontWeight = FontWeights.Bold,
                             FontSize = fontSize
                         };
                         Grid.SetRow(gobanLabel[j + 1, i + 1], i+1);
@@ -532,6 +532,7 @@ namespace ArmyKnife
                             Content = string.Empty,
                             FontFamily = font,
                             FontSize = fontSize,
+                            FontWeight = FontWeights.Bold,
                             HorizontalAlignment = System.Windows.HorizontalAlignment.Center
                         };
                         Grid.SetRow(gobanLabel[i + 1, j + 1], 9 - j);
