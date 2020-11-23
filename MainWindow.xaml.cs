@@ -656,19 +656,39 @@ namespace ArmyKnife
                 gobanLabel[suji, dan].RenderTransform = transformTekijin;
             }
 
-            if (koma == '歩')
+            switch (koma)
             {
-                if (gobanLabel[suji, dan + 1].Content.ToString() == "歩")
-                {
-                    gobanLabel[suji, dan + 1].Content = string.Empty;
-                }
-                else if (gobanLabel[suji, dan - 1].Content.ToString() == "歩")
-                {
-                    gobanLabel[suji, dan - 1].Content = string.Empty;
-                }
+                case '歩':
+                    if (gobanLabel[suji, dan + 1].Content.ToString() == "歩")
+                    {
+                        gobanLabel[suji, dan + 1].Content = string.Empty;
+                    }
+                    else if (gobanLabel[suji, dan - 1].Content.ToString() == "歩")
+                    {
+                        gobanLabel[suji, dan - 1].Content = string.Empty;
+                    }
+                    break;
+
+                case '桂':
+                    if (gobanLabel[suji - 1, dan + 2].Content.ToString() == "桂")
+                    {
+                        gobanLabel[suji - 1, dan + 2].Content = string.Empty;
+                    }
+                    else if (gobanLabel[suji + 1, dan + 2].Content.ToString() == "桂")
+                    {
+                        gobanLabel[suji + 1, dan + 2].Content = string.Empty;
+                    }
+                    else if (gobanLabel[suji - 1, dan - 2].Content.ToString() == "桂")
+                    {
+                        gobanLabel[suji - 1, dan - 2].Content = string.Empty;
+                    }
+                    else if (gobanLabel[suji + 1, dan - 2].Content.ToString() == "桂")
+                    {
+                        gobanLabel[suji + 1, dan - 2].Content = string.Empty;
+                    }
+
+                    break;
             }
-            // SolidColorBrush mySolidColorBrush = new SolidColorBrush(Colors.SteelBlue);
-            // アルファ値で、透過するようにしている。255は完全な不透明 0 は完全な透明
 
             suji_before = suji;
             dan_before = dan;
