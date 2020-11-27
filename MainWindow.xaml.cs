@@ -643,6 +643,19 @@ namespace ArmyKnife
             char koma = _te[3];
             // SY_CommandLabel.Content = teban + "HH" + suji + "HH" + dan + "HH";
 
+            // 指す場所に駒が既にあるなら、その駒を取る
+            if(gobanLabel[suji, dan].Content.ToString() != string.Empty)
+            {
+                if (teban == '▲')
+                {
+                    SY_SenteLabel.Content += gobanLabel[suji, dan].Content.ToString();
+                }
+                else if (teban == '△')
+                {
+                    SY_GoteLabel.Content += gobanLabel[suji, dan].Content.ToString();
+                }
+            }
+
             gobanLabel[suji, dan].Content = koma.ToString();
             gobanLabel[suji, dan].Background = mySolidColorBrushCurrent;
             gobanLabel[suji_before, dan_before].Background = mySolidColorBrushOriginal;
