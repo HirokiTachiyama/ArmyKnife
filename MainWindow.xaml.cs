@@ -686,7 +686,26 @@ namespace ArmyKnife
                     {
                         gobanLabel[suji + 1, dan - 2].Content = string.Empty;
                     }
-
+                    break;
+                case '金':
+                    break;
+                case '銀':
+                    break;
+                case '角':
+                    break;
+                case '飛':
+                    break;
+                case '香':
+                    break;
+                case '王' or '玉':
+                    break;
+                case '馬':
+                    break;
+                case '龍':
+                    break;
+                case 'と':
+                    break;
+                case '成桂':
                     break;
             }
 
