@@ -3,6 +3,7 @@ using AngleSharp.Html.Dom;
 using AngleSharp.Html.Parser;
 using Microsoft.VisualBasic.CompilerServices;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
@@ -52,10 +53,13 @@ namespace ArmyKnife
         private string LV_status = "";
 
         // 将棋タブ 関連変数
+        // 接頭辞s:先手, g:後手
         private string SY_status = "棋譜";
         Label[,] gobanLabel;
         RowDefinition[] dan = new RowDefinition[10]; // 行, 段, 横
         ColumnDefinition[] suji = new ColumnDefinition[10]; // 列, 筋, 縦
+
+        IDictionary sKomadai, gKomadai;
 
         GridLength gridWidth = new GridLength(35); // 1マスの幅
         GridLength gridheight = new GridLength(45);  // 1マスの高さ
@@ -68,8 +72,8 @@ namespace ArmyKnife
         Transform transformTekijin = new RotateTransform(180, 19, 20);
         Transform transformJijin = new RotateTransform(0, 0, 0);
 
-        SolidColorBrush mySolidColorBrushCurrent = new SolidColorBrush(Colors.LightPink);
-        SolidColorBrush mySolidColorBrushOriginal = new SolidColorBrush(Colors.BurlyWood);
+        SolidColorBrush mySolidColorBrushCurrent = new SolidColorBrush(Colors.Azure);
+        SolidColorBrush mySolidColorBrushOriginal = new SolidColorBrush(Colors.WhiteSmoke);
         int suji_before=0, dan_before=0;
 
 
@@ -420,6 +424,17 @@ namespace ArmyKnife
             SY_GobanGrid.Children.Clear();
             SY_GobanGrid.ShowGridLines = true;
 
+            sKomadai = new Dictionary<char, short>();
+            gKomadai = new Dictionary<char, short>();
+
+            sKomadai.Add('歩', 0); gKomadai.Add('歩', 0);
+            sKomadai.Add('桂', 0); gKomadai.Add('桂', 0);
+            sKomadai.Add('香', 0); gKomadai.Add('香', 0);
+            sKomadai.Add('銀', 0); gKomadai.Add('銀', 0);
+            sKomadai.Add('金', 0); gKomadai.Add('金', 0);
+            sKomadai.Add('角', 0); gKomadai.Add('角', 0);
+            sKomadai.Add('飛', 0); gKomadai.Add('飛', 0);
+
             // 段, 筋の初期化
             for (int i=0; i<10; i++)
             {
@@ -648,11 +663,13 @@ namespace ArmyKnife
             {
                 if (teban == '▲')
                 {
-                    SY_SenteLabel.Content += gobanLabel[suji, dan].Content.ToString();
+                    sKomadai[gobanLabel[suji, dan].Content.ToString()[0]] += 1;
+                    SY_sLabel.Content += GetKomaOnKomadai(ref sKomadai);
                 }
                 else if (teban == '△')
                 {
-                    SY_GoteLabel.Content += gobanLabel[suji, dan].Content.ToString();
+                    gKomadai[gobanLabel[suji, dan].Content.ToString()[0]] += 1;
+                    SY_gLabel.Content += GetKomaOnKomadai(ref gKomadai);
                 }
             }
 
@@ -718,8 +735,8 @@ namespace ArmyKnife
                     break;
                 case 'と':
                     break;
-                case '成桂':
-                    break;
+               // case '成桂':
+               //     break;
             }
 
             suji_before = suji;
@@ -727,6 +744,18 @@ namespace ArmyKnife
             SY_CommandLabel.Content = string.Empty;
 
         }
+
+        string GetKomaOnKomadai(ref Dictionary<char, short> komadai)
+        {
+            return "歩" + komadai['歩'].ToString() +
+                   "香" + komadai['香'].ToString() +
+                   "桂" + komadai['桂'].ToString() +
+                   "銀" + komadai['銀'].ToString() +
+                   "金" + komadai['金'].ToString() +
+                   "角" + komadai['角'].ToString() +
+                   "飛" + komadai['飛'].ToString();
+        }
+
 
         string suji2kanji(int _suji)
         {
