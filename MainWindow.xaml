@@ -66,8 +66,8 @@
 
                 <Canvas>
 
-                    <Label Name="SY_sLabel"   Content="先手" Canvas.Top="481" Width="300"/>
-                    <Label Name="SY_gLabel"    Content="後手" Width="300"/>
+                    <Label Name="SY_sLabel" Content="先手" Canvas.Top="481" Width="300"/>
+                    <Label Name="SY_gLabel" Content="後手" Width="300"/>
                     <Label Name="SY_CommandLabel" Content="Command" Canvas.Left="382" Canvas.Top="13" Width="314" FontSize="24"/>
 
                     <Grid Name="SY_GobanGrid"  Height="450" Width="350" Canvas.Top="26" ShowGridLines="True" Background="WhiteSmoke" Canvas.Left="10"/>

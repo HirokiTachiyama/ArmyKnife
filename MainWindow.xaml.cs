@@ -59,7 +59,7 @@ namespace ArmyKnife
         RowDefinition[] dan = new RowDefinition[10]; // 行, 段, 横
         ColumnDefinition[] suji = new ColumnDefinition[10]; // 列, 筋, 縦
 
-        IDictionary sKomadai, gKomadai;
+        Dictionary<char, short> sKomadai, gKomadai;
 
         GridLength gridWidth = new GridLength(35); // 1マスの幅
         GridLength gridheight = new GridLength(45);  // 1マスの高さ
@@ -661,15 +661,18 @@ namespace ArmyKnife
             // 指す場所に駒が既にあるなら、その駒を取る
             if(gobanLabel[suji, dan].Content.ToString() != string.Empty)
             {
+                char c = gobanLabel[suji, dan].Content.ToString()[0];
                 if (teban == '▲')
                 {
-                    sKomadai[gobanLabel[suji, dan].Content.ToString()[0]] += 1;
-                    SY_sLabel.Content += GetKomaOnKomadai(ref sKomadai);
+                    short si = (short)sKomadai[c];
+                    sKomadai[c] = (short)++si;
+                    SY_sLabel.Content = "先手 " + GetKomaOnKomadai(sKomadai);
                 }
                 else if (teban == '△')
                 {
-                    gKomadai[gobanLabel[suji, dan].Content.ToString()[0]] += 1;
-                    SY_gLabel.Content += GetKomaOnKomadai(ref gKomadai);
+                    short si = (short)gKomadai[c];
+                    gKomadai[c] = (short)++si;
+                    SY_gLabel.Content = "後手" + GetKomaOnKomadai(gKomadai);
                 }
             }
 
@@ -815,7 +818,7 @@ namespace ArmyKnife
 
         }
 
-        string GetKomaOnKomadai(ref Dictionary<char, short> komadai)
+        string GetKomaOnKomadai(Dictionary<char, short> komadai)
         {
             return "歩" + komadai['歩'].ToString() +
                    "香" + komadai['香'].ToString() +
