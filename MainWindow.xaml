@@ -72,9 +72,10 @@
 
                     <Grid Name="SY_GobanGrid"  Height="450" Width="350" Canvas.Top="64" ShowGridLines="True" Background="WhiteSmoke" Canvas.Left="10"/>
 
-                    <TextBox Name="testTB" Canvas.Left="412" Canvas.Top="97" Text="TextBox" TextWrapping="Wrap" Width="372" Height="261" TextChanged="testTB_TextChanged"/>
-                    <TextBox Name="shogitb" Canvas.Left="412" Canvas.Top="381" Text="URL?" TextWrapping="Wrap" Width="372"/>
+                    <TextBox Name="testTB" Canvas.Left="500" Canvas.Top="97" Text="TextBox" TextWrapping="Wrap" Width="284" Height="261" TextChanged="testTB_TextChanged"/>
+                    <TextBox Name="shogitb" Canvas.Left="500" Canvas.Top="381" Text="URL?" TextWrapping="Wrap" Width="284"/>
                     <Button Name="shogibutton" Content="Get" Canvas.Left="752" Canvas.Top="413" Canvas.Right="10" Click="shogibutton_ClickAsync"/>
+                    <TextBox Name="SY_KifuTextBox" Canvas.Left="375" TextWrapping="Wrap" Width="120" Height="545" Text=""/>
 
                 </Canvas>
 

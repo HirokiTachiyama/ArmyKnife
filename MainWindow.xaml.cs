@@ -59,23 +59,23 @@ namespace ArmyKnife
         RowDefinition[] dan = new RowDefinition[10]; // 行, 段, 横
         ColumnDefinition[] suji = new ColumnDefinition[10]; // 列, 筋, 縦
 
-        Dictionary<char, short> sKomadai, gKomadai;
+        Dictionary<char, short> sKomadai, gKomadai; // 駒台
 
         GridLength gridWidth = new GridLength(35); // 1マスの幅
         GridLength gridheight = new GridLength(45);  // 1マスの高さ
 
         //FontFamily font = new FontFamily("藍原筆文字楷書");
-        FontFamily font = new FontFamily("HG正楷書体-PRO");
+        FontFamily font = new FontFamily("HG正楷書体-PRO"); // 駒のフォント
+        int fontSize = 28; // 駒のフォントサイズ
+
+        Transform transformTekijin = new RotateTransform(180, 19, 20); // 敵陣の駒の向き
+        Transform transformJijin = new RotateTransform(0, 0, 0);  // 自陣の駒の向き
+
+        SolidColorBrush mySolidColorBrushCurrent = new SolidColorBrush(Colors.Azure); // 将棋盤の色
+        SolidColorBrush mySolidColorBrushOriginal = new SolidColorBrush(Colors.WhiteSmoke); // 移動後の色
         
-        int fontSize = 28;
-
-        Transform transformTekijin = new RotateTransform(180, 19, 20);
-        Transform transformJijin = new RotateTransform(0, 0, 0);
-
-        SolidColorBrush mySolidColorBrushCurrent = new SolidColorBrush(Colors.Azure);
-        SolidColorBrush mySolidColorBrushOriginal = new SolidColorBrush(Colors.WhiteSmoke);
-        int suji_before=0, dan_before=0;
-
+        short suji_before = 0, dan_before = 0; // 打った際に前の場所の背景色を戻すため、座標を記録しておく
+        short tesu = 0; // 手数
 
 
 
@@ -423,8 +423,13 @@ namespace ArmyKnife
 
         void make_goban(char _teban)
         {
+            // 将棋盤を綺麗にする
             SY_GobanGrid.Children.Clear();
             SY_GobanGrid.ShowGridLines = true;
+
+            SY_KifuTextBox.Text = string.Empty;
+
+            suji_before = dan_before = 5; // 5五にしておけばとりあえず問題無さそう
 
             sKomadai = new Dictionary<char, short>();
             gKomadai = new Dictionary<char, short>();
@@ -857,8 +862,16 @@ namespace ArmyKnife
 //                    break;
             }
 
-            suji_before = suji;
-            dan_before = dan;
+            // 打った座標を記録。次の手を打った際に背景を元に戻す際に利用
+            suji_before = (short)suji;
+            dan_before = (short)dan;
+
+            // 手数を増やしておく
+            tesu++;
+
+            // 棋譜エリアに追記
+            SY_KifuTextBox.Text = $"{SY_KifuTextBox.Text} \n{tesu} {SY_CommandLabel.Content}";
+            // コマンドエリアを空に
             SY_CommandLabel.Content = string.Empty;
 
         }
