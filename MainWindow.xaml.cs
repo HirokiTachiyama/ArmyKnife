@@ -700,9 +700,79 @@ namespace ArmyKnife
                         gobanLabel[suji + 1, dan - 2].Content = string.Empty;
                     }
                     break;
+
                 case '金':
+                    if (gobanLabel[suji - 1, dan].Content.ToString() == "金")
+                    {
+                        gobanLabel[suji - 1, dan].Content = string.Empty;
+                    }
+                    else if (gobanLabel[suji + 1, dan].Content.ToString() == "金")
+                    {
+                        gobanLabel[suji + 1, dan].Content = string.Empty;
+                    }
+                    else if (gobanLabel[suji, dan - 1].Content.ToString() == "金")
+                    {
+                        gobanLabel[suji, dan - 1].Content = string.Empty;
+                    }
+                    else if (gobanLabel[suji, dan + 1].Content.ToString() == "金")
+                    {
+                        gobanLabel[suji, dan + 1].Content = string.Empty;
+                    }
+                    else if (gobanLabel[suji - 1, dan - 1].Content.ToString() == "金")
+                    {
+                        gobanLabel[suji - 1, dan - 1].Content = string.Empty;
+                    }
+                    else if (gobanLabel[suji - 1, dan + 1].Content.ToString() == "金")
+                    {
+                        gobanLabel[suji - 1, dan + 1].Content = string.Empty;
+                    }
+                    else if (gobanLabel[suji + 1, dan - 1].Content.ToString() == "金")
+                    {
+                        gobanLabel[suji + 1, dan - 1].Content = string.Empty;
+                    }
+                    else if (gobanLabel[suji + 1, dan + 1].Content.ToString() == "金")
+                    {
+                        gobanLabel[suji + 1, dan + 1].Content = string.Empty;
+                    }
                     break;
+
                 case '銀':
+                    if (gobanLabel[suji - 1, dan - 1].Content.ToString() == "銀")
+                    {
+                        gobanLabel[suji - 1, dan - 1].Content = string.Empty;
+                    }
+                    else if (gobanLabel[suji - 1, dan + 1].Content.ToString() == "銀")
+                    {
+                        gobanLabel[suji - 1, dan + 1].Content = string.Empty;
+                    }
+		            else if (gobanLabel[suji + 1, dan - 1].Content.ToString() == "銀")
+                    {
+                        gobanLabel[suji + 1, dan - 1].Content = string.Empty;
+                    }
+		            else if (gobanLabel[suji + 1, dan + 1].Content.ToString() == "銀")
+                    {
+                        gobanLabel[suji + 1, dan + 1].Content = string.Empty;
+                    }
+		            else if (gobanLabel[suji + 1, dan].Content.ToString() == "銀")
+                    {
+                        gobanLabel[suji + 1, dan].Content = string.Empty;
+                    }
+		            else if (gobanLabel[suji - 1, dan].Content.ToString() == "銀")
+                    {
+                        gobanLabel[suji - 1, dan].Content = string.Empty;
+                    }
+                    else if (gobanLabel[suji + 1, dan].Content.ToString() == "銀")
+                    {
+                        gobanLabel[suji + 1, dan].Content = string.Empty;
+                    }
+                    else if (gobanLabel[suji, dan - 1].Content.ToString() == "銀")
+                    {
+                        gobanLabel[suji, dan - 1].Content = string.Empty;
+                    }
+                    else if (gobanLabel[suji, dan + 1].Content.ToString() == "銀")
+                    {
+                        gobanLabel[suji, dan + 1].Content = string.Empty;
+                    }
                     break;
                 case '角':
                     break;
@@ -718,8 +788,8 @@ namespace ArmyKnife
                     break;
                 case 'と':
                     break;
-                case '成桂':
-                    break;
+//                case '成桂': // TODO 2文字以上の駒
+//                    break;
             }
 
             suji_before = suji;
