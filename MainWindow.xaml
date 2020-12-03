@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ArmyKnife"
         mc:Ignorable="d"
-        Title="ArmyKnife" Height="600" Width="800"
+        Title="ArmyKnife" Height="650" Width="800"
         >
     <Grid>
         <!-- 大外 -->
@@ -66,11 +66,11 @@
 
                 <Canvas>
 
-                    <Label Name="SY_sLabel" Content="先手" Canvas.Top="481" Width="300"/>
-                    <Label Name="SY_gLabel" Content="後手" Width="300"/>
-                    <Label Name="SY_CommandLabel" Content="Command" Canvas.Left="382" Canvas.Top="13" Width="314" FontSize="24"/>
+                    <Label Name="SY_sLabel" Content="先手" Canvas.Top="519" Width="300" Canvas.Left="10"/>
+                    <Label Name="SY_gLabel" Content="後手" Width="300" Canvas.Top="33"/>
+                    <Label Name="SY_CommandLabel" Content="Command" Canvas.Left="185" Canvas.Top="17" Width="175" FontSize="24"/>
 
-                    <Grid Name="SY_GobanGrid"  Height="450" Width="350" Canvas.Top="26" ShowGridLines="True" Background="WhiteSmoke" Canvas.Left="10"/>
+                    <Grid Name="SY_GobanGrid"  Height="450" Width="350" Canvas.Top="64" ShowGridLines="True" Background="WhiteSmoke" Canvas.Left="10"/>
 
                     <TextBox Name="testTB" Canvas.Left="412" Canvas.Top="97" Text="TextBox" TextWrapping="Wrap" Width="372" Height="261" TextChanged="testTB_TextChanged"/>
                     <TextBox Name="shogitb" Canvas.Left="412" Canvas.Top="381" Text="URL?" TextWrapping="Wrap" Width="372"/>

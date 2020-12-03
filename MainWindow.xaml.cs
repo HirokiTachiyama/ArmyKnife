@@ -376,12 +376,14 @@ namespace ArmyKnife
             switch (e.Key)
             {
                 case Key.S: // 先手番
-                    tmp = "▲"; break;
+                    tmp = "▲";
+                    break;
                 case Key.D0 or Key.D1 or Key.D2 or Key.D3 or Key.D4 or // "D0", "D1", ...
                      Key.D5 or Key.D6 or Key.D7 or Key.D8 or Key.D9:
-                    tmp = e.Key.ToString().Substring(1); break;
+                    tmp = e.Key.ToString().Substring(1);
+                    break;
                 case Key.F or Key.U or Key.K or Key.E or Key.I or Key.G or
-                     Key.O or Key.M or Key.R or Key.Y or Key.T or Key.H:
+                     Key.O or Key.M or Key.R or Key.Y or Key.T or Key.H or Key.A:
                     // 入力無しかつ押下がGなら 後手△ を入れる
                     if (SY_CommandLabel.Content.ToString() == string.Empty && e.Key == Key.G)
                     {
@@ -689,6 +691,9 @@ namespace ArmyKnife
                 gobanLabel[suji, dan].RenderTransform = transformTekijin;
             }
 
+
+            // TODO 自分の駒は取れないようにすること。
+            // 開発中は取れた方がでばぐしやすいので、そのうちでよい。
             switch (koma)
             {
                 case '歩':
@@ -799,7 +804,47 @@ namespace ArmyKnife
                 case '飛':
                     break;
                 case '香':
+                    // TODO 先手番の時に香車の動きがおかしい
+                    // 敵側では試していないので、そちらも要確認
+                    if (teban == '▲')
+                    {
+                        for (int i = 1; i <= 9; i++)
+                        {
+                            int currentDan = dan - i;
+                            if (1 <= currentDan && currentDan <= 9)
+                            {
+                                if (gobanLabel[suji, currentDan].Content.ToString() == "香")
+                                {
+                                    gobanLabel[suji, currentDan].Content = string.Empty;
+                                }
+                            }
+                            else
+                            {
+                                break;
+                            }
+                        }
+
+                    }
+                    else if (teban == '△')
+                    {
+                        for (int i = 1; i <= 9; i++)
+                        {
+                            int currentDan = dan + i;
+                            if (1 <= currentDan && currentDan <= 9)
+                            {
+                                if (gobanLabel[suji, currentDan].Content.ToString() == "香")
+                                {
+                                    gobanLabel[suji, currentDan].Content = string.Empty;
+                                }
+                            }
+                            else
+                            {
+                                break;
+                            }
+                        }
+                    }
                     break;
+
                 case '王' or '玉':
                     break;
                 case '馬':
