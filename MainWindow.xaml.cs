@@ -1,7 +1,6 @@
 ﻿using AngleSharp.Dom;
 using AngleSharp.Html.Dom;
 using AngleSharp.Html.Parser;
-using Microsoft.VisualBasic.CompilerServices;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -17,15 +16,10 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Windows.Threading;
+using WMPLib;
 
 namespace ArmyKnife
 {
@@ -77,7 +71,8 @@ namespace ArmyKnife
         short suji_before = 0, dan_before = 0; // 打った際に前の場所の背景色を戻すため、座標を記録しておく
         short tesu = 0; // 手数
 
-
+        // 駒音の再生
+        WindowsMediaPlayer mediaPlayer = new WindowsMediaPlayer();
 
         // Redmineタブ 関連変数
         private string RM_status = "Redmine";
@@ -120,6 +115,10 @@ namespace ArmyKnife
 
             // ログの表示
             ShowLog("../../logs/FormPDFMaker_Excel.log");
+
+            // 駒音用の音源ファイルの指定
+            mediaPlayer.URL = "./shogi1.mp3";
+
         }
 
         private void PrepareDokuWiki()
@@ -861,6 +860,10 @@ namespace ArmyKnife
 //                case '成桂': // TODO 2文字以上の駒
 //                    break;
             }
+
+            // 駒音を響かせる
+            mediaPlayer.controls.play();
+
 
             // 打った座標を記録。次の手を打った際に背景を元に戻す際に利用
             suji_before = (short)suji;
