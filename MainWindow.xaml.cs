@@ -1,25 +1,15 @@
-﻿using AngleSharp.Dom;
-using AngleSharp.Html.Dom;
+﻿using AngleSharp.Html.Dom;
 using AngleSharp.Html.Parser;
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Globalization;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Text;
 using System.Text.Json;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Threading;
-using WMPLib;
 
 namespace ArmyKnife
 {
@@ -45,34 +35,6 @@ namespace ArmyKnife
         private string LV_logFile;
         private string LV_formatFile;
         private string LV_status = "";
-
-        // 将棋タブ 関連変数
-        // 接頭辞s:先手, g:後手
-        private string SY_status = "棋譜";
-        Label[,] gobanLabel;
-        RowDefinition[] dan = new RowDefinition[10]; // 行, 段, 横
-        ColumnDefinition[] suji = new ColumnDefinition[10]; // 列, 筋, 縦
-
-        Dictionary<char, short> sKomadai, gKomadai; // 駒台
-
-        GridLength gridWidth = new GridLength(35); // 1マスの幅
-        GridLength gridheight = new GridLength(45);  // 1マスの高さ
-
-        //FontFamily font = new FontFamily("藍原筆文字楷書");
-        FontFamily font = new FontFamily("HG正楷書体-PRO"); // 駒のフォント
-        int fontSize = 28; // 駒のフォントサイズ
-
-        Transform transformTekijin = new RotateTransform(180, 19, 20); // 敵陣の駒の向き
-        Transform transformJijin = new RotateTransform(0, 0, 0);  // 自陣の駒の向き
-
-        SolidColorBrush mySolidColorBrushCurrent = new SolidColorBrush(Colors.Azure); // 将棋盤の色
-        SolidColorBrush mySolidColorBrushOriginal = new SolidColorBrush(Colors.WhiteSmoke); // 移動後の色
-        
-        short suji_before = 0, dan_before = 0; // 打った際に前の場所の背景色を戻すため、座標を記録しておく
-        short tesu = 0; // 手数
-
-        // 駒音の再生
-        WindowsMediaPlayer mediaPlayer = new WindowsMediaPlayer();
 
         // Redmineタブ 関連変数
         private string RM_status = "Redmine";
@@ -157,7 +119,6 @@ namespace ArmyKnife
             //    item.Text = log;
             //    logListBox.Items.Add(item);
             //}
-
         }
 
         private void DW_LoadButton_Clicked(object sender, RoutedEventArgs e)
@@ -226,8 +187,6 @@ namespace ArmyKnife
         {
             Console.WriteLine("Redmine");
 
-
-
             UpdateStatusLabel();
         }
 
@@ -283,7 +242,6 @@ namespace ArmyKnife
                     try
                     {
 
-
                         // 株価を取得したいサイトのURL
                         var code = "eff8410f11971491eef56d0d2f506c2114ee5fd1";
                         var urlstring = $"https://shogidb2.com/games/{code}";
@@ -303,8 +261,6 @@ namespace ArmyKnife
                             Console.WriteLine(document.ToString());
 
                         }
-
-
 
                         // クエリーセレクタを指定し株価部分を取得する
                         var priceElement = doc.QuerySelector("#main td[class=stoksPrice]");
