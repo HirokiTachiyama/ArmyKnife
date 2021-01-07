@@ -341,6 +341,8 @@ namespace ArmyKnife
             int suji = int.Parse(_te[1].ToString());
             int dan = change_dan(_te[2]);
             char koma = _te[3];
+            int suji_before = int.Parse(_te[4].ToString());
+            int dan_before = change_dan(_te[5]);
             // SY_CommandLabel.Content = teban + "HH" + suji + "HH" + dan + "HH";
 
             // 指す場所に駒が既にあるなら、その駒を取る
@@ -375,170 +377,9 @@ namespace ArmyKnife
             }
 
 
-            // TODO 自分の駒は取れないようにすること。
-            // 開発中は取れた方がでばぐしやすいので、そのうちでよい。
-            switch (koma)
-            {
-                case '歩':
-                    if (gobanLabel[suji, dan + 1].Content.ToString() == "歩")
-                    {
-                        gobanLabel[suji, dan + 1].Content = string.Empty;
-                    }
-                    else if (gobanLabel[suji, dan - 1].Content.ToString() == "歩")
-                    {
-                        gobanLabel[suji, dan - 1].Content = string.Empty;
-                    }
-                    break;
 
-                case '桂':
-                    if (gobanLabel[suji - 1, dan + 2].Content.ToString() == "桂")
-                    {
-                        gobanLabel[suji - 1, dan + 2].Content = string.Empty;
-                    }
-                    else if (gobanLabel[suji + 1, dan + 2].Content.ToString() == "桂")
-                    {
-                        gobanLabel[suji + 1, dan + 2].Content = string.Empty;
-                    }
-                    else if (gobanLabel[suji - 1, dan - 2].Content.ToString() == "桂")
-                    {
-                        gobanLabel[suji - 1, dan - 2].Content = string.Empty;
-                    }
-                    else if (gobanLabel[suji + 1, dan - 2].Content.ToString() == "桂")
-                    {
-                        gobanLabel[suji + 1, dan - 2].Content = string.Empty;
-                    }
-                    break;
-
-                case '金':
-                    if (gobanLabel[suji - 1, dan].Content.ToString() == "金")
-                    {
-                        gobanLabel[suji - 1, dan].Content = string.Empty;
-                    }
-                    else if (gobanLabel[suji + 1, dan].Content.ToString() == "金")
-                    {
-                        gobanLabel[suji + 1, dan].Content = string.Empty;
-                    }
-                    else if (gobanLabel[suji, dan - 1].Content.ToString() == "金")
-                    {
-                        gobanLabel[suji, dan - 1].Content = string.Empty;
-                    }
-                    else if (gobanLabel[suji, dan + 1].Content.ToString() == "金")
-                    {
-                        gobanLabel[suji, dan + 1].Content = string.Empty;
-                    }
-                    else if (gobanLabel[suji - 1, dan - 1].Content.ToString() == "金")
-                    {
-                        gobanLabel[suji - 1, dan - 1].Content = string.Empty;
-                    }
-                    else if (gobanLabel[suji - 1, dan + 1].Content.ToString() == "金")
-                    {
-                        gobanLabel[suji - 1, dan + 1].Content = string.Empty;
-                    }
-                    else if (gobanLabel[suji + 1, dan - 1].Content.ToString() == "金")
-                    {
-                        gobanLabel[suji + 1, dan - 1].Content = string.Empty;
-                    }
-                    else if (gobanLabel[suji + 1, dan + 1].Content.ToString() == "金")
-                    {
-                        gobanLabel[suji + 1, dan + 1].Content = string.Empty;
-                    }
-                    break;
-
-                case '銀':
-                    if (gobanLabel[suji - 1, dan - 1].Content.ToString() == "銀")
-                    {
-                        gobanLabel[suji - 1, dan - 1].Content = string.Empty;
-                    }
-                    else if (gobanLabel[suji - 1, dan + 1].Content.ToString() == "銀")
-                    {
-                        gobanLabel[suji - 1, dan + 1].Content = string.Empty;
-                    }
-                    else if (gobanLabel[suji + 1, dan - 1].Content.ToString() == "銀")
-                    {
-                        gobanLabel[suji + 1, dan - 1].Content = string.Empty;
-                    }
-                    else if (gobanLabel[suji + 1, dan + 1].Content.ToString() == "銀")
-                    {
-                        gobanLabel[suji + 1, dan + 1].Content = string.Empty;
-                    }
-                    else if (gobanLabel[suji + 1, dan].Content.ToString() == "銀")
-                    {
-                        gobanLabel[suji + 1, dan].Content = string.Empty;
-                    }
-                    else if (gobanLabel[suji - 1, dan].Content.ToString() == "銀")
-                    {
-                        gobanLabel[suji - 1, dan].Content = string.Empty;
-                    }
-                    else if (gobanLabel[suji + 1, dan].Content.ToString() == "銀")
-                    {
-                        gobanLabel[suji + 1, dan].Content = string.Empty;
-                    }
-                    else if (gobanLabel[suji, dan - 1].Content.ToString() == "銀")
-                    {
-                        gobanLabel[suji, dan - 1].Content = string.Empty;
-                    }
-                    else if (gobanLabel[suji, dan + 1].Content.ToString() == "銀")
-                    {
-                        gobanLabel[suji, dan + 1].Content = string.Empty;
-                    }
-                    break;
-                case '角':
-                    break;
-                case '飛':
-                    break;
-                case '香':
-                    // TODO 先手番の時に香車の動きがおかしい
-                    // 敵側では試していないので、そちらも要確認
-                    if (teban == '▲')
-                    {
-                        for (int i = 1; i <= 9; i++)
-                        {
-                            int currentDan = dan - i;
-                            if (1 <= currentDan && currentDan <= 9)
-                            {
-                                if (gobanLabel[suji, currentDan].Content.ToString() == "香")
-                                {
-                                    gobanLabel[suji, currentDan].Content = string.Empty;
-                                }
-                            }
-                            else
-                            {
-                                break;
-                            }
-                        }
-
-                    }
-                    else if (teban == '△')
-                    {
-                        for (int i = 1; i <= 9; i++)
-                        {
-                            int currentDan = dan + i;
-                            if (1 <= currentDan && currentDan <= 9)
-                            {
-                                if (gobanLabel[suji, currentDan].Content.ToString() == "香")
-                                {
-                                    gobanLabel[suji, currentDan].Content = string.Empty;
-                                }
-                            }
-                            else
-                            {
-                                break;
-                            }
-                        }
-                    }
-                    break;
-
-                case '王' or '玉':
-                    break;
-                case '馬':
-                    break;
-                case '龍':
-                    break;
-                case 'と':
-                    break;
-                    //                case '成桂': // TODO 2文字以上の駒
-                    //                    break;
-            }
+            // 210107 駒を消す処理は、打つ前の位置を読んでそこを消す方式に変更 .kifuなどがその様になっている
+            gobanLabel[suji_before, dan_before].Content = string.Empty;
 
             // 駒音を響かせる
             mediaPlayer.controls.play();
